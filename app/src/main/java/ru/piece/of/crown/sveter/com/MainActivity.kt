@@ -16,13 +16,15 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         if (!UserData.isUserAlreadyLogin(this)) {
-            startActivity(Intent(this, SelectLoginOrRegistrationActivity::class.java))
-            finish()
+//            startActivity(Intent(this, SelectLoginOrRegistrationActivity::class.java))
+//            finish()
         } else
             println("Registered with phone number: ${UserData.getPhoneNumber(this)}")
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        supportActionBar?.hide()
 
         userAvatar = findViewById(R.id.userAvatar)
         userName = findViewById(R.id.userName)
