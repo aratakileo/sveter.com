@@ -1,8 +1,6 @@
 package ru.piece.of.crown.sveter.com
 
 import android.content.Intent
-import android.content.res.ColorStateList
-import android.graphics.drawable.RippleDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
@@ -17,11 +15,6 @@ class SelectLoginOrRegistrationActivity : AppCompatActivity() {
 
         iAmNewHereButton = findViewById(R.id.iAmNewHereButton)
         loginButton = findViewById(R.id.loginButton)
-
-        val rippleColorStateList = ColorStateList(arrayOf(intArrayOf()), intArrayOf(R.color.light_green))
-
-        iAmNewHereButton.background = RippleDrawable(rippleColorStateList, iAmNewHereButton.background, null)
-        loginButton.background = RippleDrawable(rippleColorStateList, loginButton.background, null)
 
         iAmNewHereButton.setOnClickListener {
             startActivity(Intent(this, RegistrationActivity::class.java))
