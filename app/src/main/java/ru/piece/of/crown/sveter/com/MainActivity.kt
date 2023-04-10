@@ -16,8 +16,8 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         if (!UserData.isUserAlreadyLogin(this)) {
-//            startActivity(Intent(this, SelectLoginOrRegistrationActivity::class.java))
-//            finish()
+            startActivity(Intent(this, SelectLoginOrRegistrationActivity::class.java))
+            finish()
         } else
             println("Registered with phone number: ${UserData.getPhoneNumber(this)}")
 
