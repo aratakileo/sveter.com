@@ -52,7 +52,7 @@
             android:id="@+id/iAmNewHereButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/filled_button_ripple_animation"
+            android:background="@drawable/filled_button_green_ripple_animation"
             android:text="@string/iAmNewHere"
             android:textAllCaps="false"
             android:textColor="@color/dark_green" />
@@ -65,7 +65,7 @@
         android:layout_marginStart="10dp"
         android:layout_marginTop="5dp"
         android:layout_marginEnd="10dp"
-        android:background="@drawable/filled_button_ripple_animation"
+        android:background="@drawable/filled_button_green_ripple_animation"
         android:text="@string/loginSign"
         android:textAllCaps="false"
         android:textColor="@color/white"

@@ -4,10 +4,9 @@ import okhttp3.Request
 import java.net.URLEncoder
 import kotlin.random.Random
 
-class VerificationCodeSender(private val message: String, val codeLength: Int) {
+class VerificationCodeSender(private val token: String, private val message: String, val codeLength: Int) {
     companion object {
         private const val ALPHABET = "1234567890"
-        private const val TOKEN = "C834B5D4-73EA-EF4B-391C-580B66450271&to=79604873962"
     }
 
     enum class SendVerificationMessageRequestCode {
@@ -35,7 +34,7 @@ class VerificationCodeSender(private val message: String, val codeLength: Int) {
         var responseIsSuccessful: Boolean
 
         client.newCall(
-            Request.Builder().url("https://sms.ru/sms/send?api_id=$TOKEN&to=$phoneNumber&msg=${
+            Request.Builder().url("https://sms.ru/sms/send?api_id=$token&to=$phoneNumber&msg=${
                 URLEncoder.encode(
                     message.replace(
                         "%key%",
