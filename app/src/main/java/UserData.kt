@@ -13,7 +13,7 @@ object UserData {
 
     fun getData(context: Context): SharedPreferences = context.getSharedPreferences("user", Context.MODE_PRIVATE)
 
-    fun getPhoneNumber(context: Context): String? = getData(context).getString("phoneNumber", "")
+    fun getPhoneNumber(context: Context): String? = getData(context).getString("phoneNumber", null)
 
     fun isUserAlreadyLogin(context: Context): Boolean = getPhoneNumber(context) != null
 
