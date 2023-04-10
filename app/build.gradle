@@ -1,6 +1,10 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+
+    /* for FIREBASE: START */
+    id 'com.google.gms.google-services'
+    /* for FIREBASE: END */
 }
 
 android {
@@ -36,9 +40,12 @@ dependencies {
     implementation 'androidx.core:core-ktx:1.9.0'
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'com.google.android.material:material:1.8.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
 
     implementation 'com.yandex.android:maps.mobile:4.3.1-full'
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation platform('com.google.firebase:firebase-bom:31.4.0')
+    implementation 'com.google.firebase:firebase-firestore-ktx'
+    implementation 'com.squareup.okhttp3:okhttp:4.10.0'
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'

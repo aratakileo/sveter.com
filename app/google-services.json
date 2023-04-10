@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "798571982107",
+    "project_id": "svetercom-71af6",
+    "storage_bucket": "svetercom-71af6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:798571982107:android:d347eda4374cbb463277be",
+        "android_client_info": {
+          "package_name": "ru.piece.of.crown.sveter.com"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "798571982107-jeb72gh20ev6tl3m1kbc9cfm16mku3t0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "ru.piece.of.crown.sveter.com",
+            "certificate_hash": "2a7945741aef58bcc09bca6ada0fd9df1c6d7c13"
+          }
+        },
+        {
+          "client_id": "798571982107-q7q1j66sklohmsjj8aj9drjiru812l2b.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD-OxvnLpMOziH5wm_hTzj9SOv1xKbU0y0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "798571982107-q7q1j66sklohmsjj8aj9drjiru812l2b.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

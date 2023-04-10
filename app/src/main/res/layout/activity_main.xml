@@ -31,7 +31,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:layout_marginLeft="8dp">
+                android:layout_marginStart="8dp"
+                android:layout_weight="1">
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -47,6 +48,11 @@
                     android:fontFamily="sans-serif-black"
                     android:textSize="20sp"/>
             </LinearLayout>
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="8dp"
+                android:src="@drawable/notifications_bell"/>
         </LinearLayout>
         <ScrollView
             android:layout_width="match_parent"
