@@ -1,4 +1,8 @@
 <resources>
-    <string name="appName">sveter.com</string>
+    <string name="appName">Светер.ком</string>
     <string name="yandexMapAPIToken">6b23293d–5586–402c-ad1f-aaebec4c56a8</string>
+    <string name="mainSignWelcomeBack">Рады вас видеть 👋</string>
+    <string name="mainSignQuest">Гость</string>
+    <string name="mainSignBannerStartRide">Поехали!</string>
+    <string name="mainSignBannerStartRideDescription">Организуйте или присоеденитесь к поездке 🚗</string>
 </resources>
