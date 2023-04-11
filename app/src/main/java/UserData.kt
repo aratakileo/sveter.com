@@ -22,7 +22,9 @@ object UserData {
         return if (querySnapshot.isSuccessful) querySnapshot.result else null
     }
 
-    fun getUserDataByPhoneNumber(phoneNumber: String): QueryDocumentSnapshot? {
+    fun getUserDataByPhoneNumber(phoneNumber: String?): QueryDocumentSnapshot? {
+        if (phoneNumber == null) return null
+
         getUsersData()?.forEach { queryDocumentSnapshot ->
             if (queryDocumentSnapshot.id == phoneNumber)
                 return queryDocumentSnapshot
@@ -31,7 +33,11 @@ object UserData {
         return null
     }
 
+    fun getUserData(context: Context): QueryDocumentSnapshot? = getUserDataByPhoneNumber(getPhoneNumber(context))
+
     fun getPhoneNumber(context: Context): String? = getLocalUserData(context).getString("phoneNumber", null)
+
+    fun getUserFirstName(context: Context): String? = getUserData(context)?.getString("firstName")
 
     fun hasUserWithPhoneNumber(phoneNumber: String): Boolean = getUserDataByPhoneNumber(phoneNumber) != null
 

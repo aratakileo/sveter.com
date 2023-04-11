@@ -19,7 +19,7 @@ class MainActivity : AppCompatActivity() {
             startActivity(Intent(this, SelectLoginOrRegistrationActivity::class.java))
             finish()
         } else
-            println("Registered with phone number: ${UserData.getPhoneNumber(this)}")
+            println("Login with phone number: ${UserData.getPhoneNumber(this)}")
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -28,5 +28,10 @@ class MainActivity : AppCompatActivity() {
 
         userAvatar = findViewById(R.id.userAvatar)
         userName = findViewById(R.id.userName)
+
+        UserData.getUserFirstName(this).apply {
+            println(this)
+            if (this != null) userName.text = this
+        }
     }
 }
