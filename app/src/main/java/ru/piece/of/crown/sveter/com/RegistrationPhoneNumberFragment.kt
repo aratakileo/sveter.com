@@ -35,18 +35,16 @@ class RegistrationPhoneNumberFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val parentActivity = activity as RegistrationActivity
-
-
-            view.apply {
-                if (parentActivity.isRegistrationProcess) {
-                    findViewById<TextView>(R.id.activityTitle).setText(R.string.loginTitle)
-                    findViewById<TextView>(R.id.activitySubtitle).setText(R.string.weWereMissingYouSubtitle)
-                }
-
-                phoneNumberField = findViewById(R.id.phoneNumberField)
-                getVerificationCodeButton = findViewById(R.id.getVerificationCodeButton)
-                getVerificationCodeButtonContainer = findViewById(R.id.getVerificationCodeButtonContainer)
+        view.apply {
+            if (!parentActivity.isRegistrationProcess) {
+                findViewById<TextView>(R.id.activityTitle).setText(R.string.loginTitle)
+                findViewById<TextView>(R.id.activitySubtitle).setText(R.string.weWereMissingYouSubtitle)
             }
+
+            phoneNumberField = findViewById(R.id.phoneNumberField)
+            getVerificationCodeButton = findViewById(R.id.getVerificationCodeButton)
+            getVerificationCodeButtonContainer = findViewById(R.id.getVerificationCodeButtonContainer)
+        }
 
         getVerificationCodeButtonContainer.apply {
             alpha = 0f

@@ -18,12 +18,12 @@ class SelectLoginOrRegistrationActivity : AppCompatActivity() {
 
         iAmNewHereButton.setOnClickListener {
             startActivity(Intent(this, RegistrationActivity::class.java))
-            finish()
+            overridePendingTransition(R.anim.slide_out_left, R.anim.slide_in_right)
         }
 
         loginButton.setOnClickListener {
             startActivity(Intent(this, LoginActivity::class.java))
-            finish()
+            overridePendingTransition(R.anim.slide_out_left, R.anim.slide_in_right)
         }
 
         supportActionBar?.hide()

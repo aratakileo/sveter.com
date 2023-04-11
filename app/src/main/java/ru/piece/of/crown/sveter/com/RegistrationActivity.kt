@@ -29,6 +29,11 @@ open class RegistrationActivity(val isRegistrationProcess: Boolean = true) : App
             supportFragmentManager.beginTransaction().add(R.id.container, RegistrationPhoneNumberFragment()).commit()
     }
 
+    override fun onBackPressed() {super.onBackPressed()
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
+        finish()
+    }
+
     fun showNextFragment(fragment: Fragment) {
         supportFragmentManager
             .beginTransaction()
