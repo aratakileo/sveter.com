@@ -6,11 +6,11 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ImageView
 import android.widget.TextView
-import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.ktx.Firebase
+//import com.google.firebase.firestore.ktx.firestore I must comment it, because it makes syntax errrors
+//import com.google.firebase.ktx.Firebase
 
 class MainActivity : AppCompatActivity() {
-    private val db = Firebase.firestore
+    //private val db = Firebase.firestore
     lateinit var userAvatar: ImageView
     lateinit var userName: TextView
 
