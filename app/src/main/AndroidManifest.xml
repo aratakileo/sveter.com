@@ -26,7 +26,7 @@
         <activity
             android:name=".LoginActivity"
             android:exported="true"
-            android:label="@string/loginSign" />
+            android:label="@string/loginSignAction" />
         <activity
             android:name=".MainActivity"
             android:exported="true">

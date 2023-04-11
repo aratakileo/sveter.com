@@ -17,6 +17,66 @@ import androidx.core.widget.doOnTextChanged
  * create an instance of this fragment.
  */
 class RegistrationPhoneNumberFragment : Fragment() {
+    lateinit var phoneNumberField: EditText
+    lateinit var getVerificationCodeButton: Button
+    lateinit var getVerificationCodeButtonContainer: CardView
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        return inflater.inflate(R.layout.fragment_registration_phone_number, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        phoneNumberField = view.findViewById(R.id.phoneNumberField)
+        getVerificationCodeButton = view.findViewById(R.id.getVerificationCodeButton)
+        getVerificationCodeButtonContainer = view.findViewById(R.id.getVerificationCodeButtonContainer)
+
+        getVerificationCodeButtonContainer.apply {
+            alpha = 0f
+            translationY = 50f
+        }
+        getVerificationCodeButton.isEnabled = false
+
+        getVerificationCodeButton.setOnClickListener {
+            (activity as RegistrationActivity).apply {
+                userNumber = "7${cleanPhoneNumber(phoneNumberField.text.toString())}"
+                when (verificationCodeSender.sendVerificationCode(userNumber)) {
+                    VerificationCodeSender.SendVerificationMessageRequestCode.SUCCESSFUL -> showNextFragment(RegistrationVerificationCodeFragment())
+                    VerificationCodeSender.SendVerificationMessageRequestCode.NETWORK_ISSUE -> Toast.makeText(activity, R.string.networkIssue, Toast.LENGTH_LONG).show()
+                }
+            }
+        }
+
+        var ignoreAction = false
+
+        phoneNumberField.doOnTextChanged { text, start, before, count ->
+            if (text?.length == 13) {
+                if (!getVerificationCodeButton.isEnabled)
+                    getVerificationCodeButtonContainer.apply {
+                        getVerificationCodeButton.isEnabled = true
+                        animate().alpha(1f).translationY(0f).duration = 1000
+                    }
+            } else if (getVerificationCodeButton.isEnabled)
+                getVerificationCodeButtonContainer.apply {
+                    getVerificationCodeButton.isEnabled = false
+                    animate().alpha(0f).translationY(50f).duration = 1000
+                }
+            
+            if (ignoreAction) return@doOnTextChanged
+            ignoreAction = true
+            val textString = text.toString()
+            val cursorPositionDecrease = textString.length - textString.replace(".", "").length
+            phoneNumberField.setText(formatPhoneNumber(textString))
+            phoneNumberField.setSelection(transformCursorPosition(start, before != 0) - cursorPositionDecrease)
+            ignoreAction = false
+        }
+    }
+
     companion object {
         private fun cleanPhoneNumber(sourceNumber: String): String {
             var outputNumber =
@@ -52,66 +112,6 @@ class RegistrationPhoneNumberFragment : Fragment() {
                 outputPosition += if (isDecrease) -1 else 1
 
             return outputPosition
-        }
-    }
-
-    lateinit var phoneNumberField: EditText
-    lateinit var getVerificationCodeButton: Button
-    lateinit var getVerificationCodeButtonContainer: CardView
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_registration_phone_number, container, false)
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        phoneNumberField = view.findViewById(R.id.phoneNumberField)
-        getVerificationCodeButton = view.findViewById(R.id.getVerificationCodeButton)
-        getVerificationCodeButtonContainer = view.findViewById(R.id.getVerificationCodeButtonContainer)
-
-        getVerificationCodeButtonContainer.apply {
-            alpha = 0f
-            translationY = 50f
-        }
-        getVerificationCodeButton.isEnabled = false
-
-        getVerificationCodeButton.setOnClickListener {
-            (activity as RegistrationActivity).apply {
-                when (verificationCodeSender.sendVerificationCode("7${cleanPhoneNumber(phoneNumberField.text.toString())}")) {
-                    VerificationCodeSender.SendVerificationMessageRequestCode.SUCCESSFUL -> showNextFragment(RegistrationVerificationCodeFragment())
-                    VerificationCodeSender.SendVerificationMessageRequestCode.NETWORK_ISSUE -> Toast.makeText(activity, R.string.networkIssue, Toast.LENGTH_LONG).show()
-                }
-            }
-        }
-
-        var ignoreAction = false
-
-        phoneNumberField.doOnTextChanged { text, start, before, count ->
-            if (text?.length == 13) {
-                if (!getVerificationCodeButton.isEnabled)
-                    getVerificationCodeButtonContainer.apply {
-                        getVerificationCodeButton.isEnabled = true
-                        animate().alpha(1f).translationY(0f).duration = 1000
-                    }
-            } else if (getVerificationCodeButton.isEnabled)
-                getVerificationCodeButtonContainer.apply {
-                    getVerificationCodeButton.isEnabled = false
-                    animate().alpha(0f).translationY(50f).duration = 1000
-                }
-            
-            if (ignoreAction) return@doOnTextChanged
-            ignoreAction = true
-            val textString = text.toString()
-            println(textString)
-            val cursorPositionDecrease = textString.length - textString.replace(".", "").length
-            phoneNumberField.setText(formatPhoneNumber(textString))
-            phoneNumberField.setSelection(transformCursorPosition(start, before != 0) - cursorPositionDecrease)
-            ignoreAction = false
         }
     }
 }

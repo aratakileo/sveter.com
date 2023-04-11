@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.cardview.widget.CardView
 import androidx.core.widget.doOnTextChanged
@@ -18,8 +19,7 @@ import androidx.core.widget.doOnTextChanged
  */
 class RegistrationVerificationCodeFragment : Fragment() {
     lateinit var confirmationCodeField: EditText
-    lateinit var applyConfirmationCodeButton: Button
-    lateinit var applyConfirmationCodeButtonContainer: CardView
+    lateinit var applyConfirmationCodeButton: ImageView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,25 +33,24 @@ class RegistrationVerificationCodeFragment : Fragment() {
 
         confirmationCodeField = view.findViewById(R.id.confirmationCodeField)
         applyConfirmationCodeButton = view.findViewById(R.id.applyVerificationCodeButton)
-        applyConfirmationCodeButtonContainer = view.findViewById(R.id.applyVerificationCodeButtonContainer)
 
-        applyConfirmationCodeButtonContainer.apply {
+        applyConfirmationCodeButton.apply {
             alpha = 0f
-            translationY = 50f
+            translationX = 50f
+            isEnabled = false
         }
-        applyConfirmationCodeButton.isEnabled = false
 
         confirmationCodeField.doOnTextChanged { text, start, before, count ->
-            if (text?.length == activity?.resources?.getInteger(R.integer.confirmationCodeLength)) {
+            if (text?.length == requireActivity().resources.getInteger(R.integer.confirmationCodeLength)) {
                 if (!applyConfirmationCodeButton.isEnabled)
-                    applyConfirmationCodeButtonContainer.apply {
-                        applyConfirmationCodeButton.isEnabled = true
-                        animate().alpha(1f).translationY(0f).duration = 1000
+                    applyConfirmationCodeButton.apply {
+                        isEnabled = true
+                        animate().alpha(1f).translationX(0f).duration = 1000
                     }
             } else if (applyConfirmationCodeButton.isEnabled)
-                applyConfirmationCodeButtonContainer.apply {
-                    applyConfirmationCodeButton.isEnabled = false
-                    animate().alpha(0f).translationY(50f).duration = 1000
+                applyConfirmationCodeButton.apply {
+                    isEnabled = false
+                    animate().alpha(0f).translationX(50f).duration = 1000
                 }
         }
 

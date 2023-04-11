@@ -8,6 +8,10 @@ import androidx.fragment.app.Fragment
 
 class RegistrationActivity : AppCompatActivity() {
     lateinit var verificationCodeSender: VerificationCodeSender
+    lateinit var userNumber: String
+    lateinit var userFirstName: String
+    lateinit var userLastName: String
+    lateinit var userDateOfBirth: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

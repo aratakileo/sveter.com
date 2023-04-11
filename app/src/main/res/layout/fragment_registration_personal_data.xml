@@ -3,7 +3,121 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".RegistrationPersonalDataFragment"
     android:background="@color/light_orange">
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/light_orange">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:fontFamily="sans-serif-black"
+                android:gravity="center_horizontal"
+                android:text="@string/tellUsAboutYourselfSign"
+                android:textColor="@color/white"
+                android:textSize="35sp"
+                android:layout_marginBottom="5dp"/>
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-medium"
+                android:text="@string/letsGetToKnowEachOtherBetterSign"
+                android:textColor="@color/white"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:textSize="16sp"
+                android:gravity="center_horizontal"
+                android:layout_marginBottom="25dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/firstNameField"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="12dp"
+                    android:padding="15dp"
+                    android:fontFamily="sans-serif-medium"
+                    android:maxLines="1"
+                    android:textSize="16sp"
+                    android:inputType="textPersonName"
+                    android:textColor="@color/dirty_grey"
+                    android:hint="@string/firstNameHint"
+                    android:textColorHint="@color/light_grey"
+                    android:gravity="center_horizontal"
+                    android:background="@drawable/white_filled_background_field"
+                    android:layout_weight="1"
+                    android:maxLength="30"/>
+
+                <EditText
+                    android:id="@+id/lastNameField"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="12dp"
+                    android:padding="15dp"
+                    android:fontFamily="sans-serif-medium"
+                    android:maxLines="1"
+                    android:textSize="16sp"
+                    android:inputType="textPersonName"
+                    android:textColor="@color/dirty_grey"
+                    android:hint="@string/lastNameHint"
+                    android:textColorHint="@color/light_grey"
+                    android:gravity="center_horizontal"
+                    android:background="@drawable/white_filled_background_field"
+                    android:layout_weight="1"
+                    android:maxLength="30"/>
+
+            </LinearLayout>
+
+            <EditText
+                android:id="@+id/dateOfBirthField"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="12dp"
+                android:padding="15dp"
+                android:fontFamily="sans-serif-medium"
+                android:maxLines="1"
+                android:textSize="16sp"
+                android:inputType="numberDecimal"
+                android:textColor="@color/dirty_grey"
+                android:hint="@string/dateOfBirthHint"
+                android:textColorHint="@color/light_grey"
+                android:gravity="center_horizontal"
+                android:background="@drawable/white_filled_background_field"/>
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/applyUserDataButton"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:padding="15dp"
+            android:scaleType="fitXY"
+            android:background="@drawable/orange_filled_button"
+            android:clickable="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginBottom="10dp"
+            android:layout_marginEnd="10dp"
+            android:src="@drawable/white_arrow_forward"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>
