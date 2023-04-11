@@ -14,12 +14,17 @@ object UserData {
 
     fun getLocalUserData(context: Context): SharedPreferences = context.getSharedPreferences("user", Context.MODE_PRIVATE)
 
-    fun getUsersData(): QuerySnapshot = Firebase.firestore.collection("users").get().result
+    fun getUsersData(): QuerySnapshot? {
+        val querySnapshot = Firebase.firestore.collection("users").get()
+        while (!querySnapshot.isComplete) {}
+
+        return if (querySnapshot.isSuccessful) querySnapshot.result else null
+    }
 
     fun getPhoneNumber(context: Context): String? = getLocalUserData(context).getString("phoneNumber", null)
 
     fun hasUserWithPhoneNumber(phoneNumber: String): Boolean {
-        getUsersData().forEach { queryDocumentSnapshot ->
+        getUsersData()?.forEach { queryDocumentSnapshot ->
             if (queryDocumentSnapshot.id == phoneNumber)
                 return true
         }

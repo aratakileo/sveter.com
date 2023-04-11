@@ -1,5 +1,6 @@
 package ru.piece.of.crown.sveter.com
 
+import UserData
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -45,10 +46,11 @@ class RegistrationPhoneNumberFragment : Fragment() {
         getVerificationCodeButton.setOnClickListener {
             (activity as RegistrationActivity).apply {
                 userNumber = "7${cleanPhoneNumber(phoneNumberField.text.toString())}"
-                when (verificationCodeSender.sendVerificationCode(userNumber)) {
-                    VerificationCodeSender.SendVerificationMessageRequestCode.SUCCESSFUL -> showNextFragment(RegistrationVerificationCodeFragment())
-                    VerificationCodeSender.SendVerificationMessageRequestCode.NETWORK_ISSUE -> Toast.makeText(activity, R.string.networkIssue, Toast.LENGTH_LONG).show()
-                }
+
+                if (UserData.hasUserWithPhoneNumber(userNumber))
+                    Toast.makeText(this, R.string.phoneNumberDuplicationIssue, Toast.LENGTH_LONG).show()
+                else
+                    showNextFragment(RegistrationVerificationCodeFragment())
             }
         }
 
