@@ -3,12 +3,11 @@ package ru.piece.of.crown.sveter.com
 import VerificationCodeSender
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.FrameLayout
 import androidx.fragment.app.Fragment
 
-class RegistrationActivity : AppCompatActivity() {
+open class RegistrationActivity(val isRegistrationProcess: Boolean = true) : AppCompatActivity() {
     lateinit var verificationCodeSender: VerificationCodeSender
-    lateinit var userNumber: String
+    lateinit var userPhoneNumber: String
     lateinit var userFirstName: String
     lateinit var userLastName: String
     lateinit var userDateOfBirth: String

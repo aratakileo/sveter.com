@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.core.widget.doOnTextChanged
 
@@ -28,25 +29,47 @@ class RegistrationPasswordFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val parentActivity = activity as RegistrationActivity
+
         view.apply {
             finishRegistrationButton = findViewById(R.id.finishRegistrationButton)
             passwordField = findViewById(R.id.passwordField)
             passwordConfirmationField = findViewById(R.id.passwordConfirmationField)
+
+            if (!parentActivity.isRegistrationProcess) {
+                findViewById<TextView>(R.id.activityTitle).setText(R.string.insertLoginPasswordTitle)
+                findViewById<TextView>(R.id.activitySubtitle).setText(R.string.insertLoginPasswordSubtitle)
+
+                passwordConfirmationField.visibility = View.GONE
+            }
         }
 
         finishRegistrationButton.setOnClickListener {
-            if (passwordField.text.toString() == passwordConfirmationField.text.toString())
-                (activity as RegistrationActivity).apply {
-                    UserData.registrateUser(
-                        this,
-                        userFirstName,
-                        userLastName,
-                        userDateOfBirth,
-                        userNumber,
-                        passwordField.text.toString()
-                    )
-                    startActivity(Intent(this, MainActivity::class.java))
-                    finish()
+            if (passwordField.text.toString() == passwordConfirmationField.text.toString() || !parentActivity.isRegistrationProcess)
+                parentActivity.apply {
+                    val password = passwordField.text.toString()
+                    var isPossibleToFinish = true
+
+                    if (isRegistrationProcess)
+                        UserData.registrateUser(
+                            this,
+                            userFirstName,
+                            userLastName,
+                            userDateOfBirth,
+                            userPhoneNumber,
+                            password
+                        )
+                    else if (!UserData.isPasswordCorrect(userPhoneNumber, password)) {
+                        isPossibleToFinish = false
+                        Toast.makeText(this, R.string.invalidPasswordIssue, Toast.LENGTH_SHORT)
+                            .show()
+                    } else
+                        UserData.loginUser(this, userPhoneNumber, password)
+
+                    if (isPossibleToFinish) {
+                        startActivity(Intent(this, MainActivity::class.java))
+                        finish()
+                    }
                 }
             else
                 Toast.makeText(activity, R.string.differentPasswordsIssue, Toast.LENGTH_SHORT).show()
@@ -62,7 +85,7 @@ class RegistrationPasswordFragment : Fragment() {
     }
 
     private fun tryToShowOrHideFinishRegistrationButton() {
-        if (passwordField.length() >= 8 && passwordConfirmationField.length() == passwordField.length()) {
+        if (passwordField.length() >= 8 && (passwordConfirmationField.length() == passwordField.length() || !(activity as RegistrationActivity).isRegistrationProcess)) {
             if (!finishRegistrationButton.isEnabled)
                 finishRegistrationButton.apply {
                     isEnabled = true

@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 import androidx.cardview.widget.CardView
 import androidx.core.widget.doOnTextChanged
@@ -33,9 +34,19 @@ class RegistrationPhoneNumberFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        phoneNumberField = view.findViewById(R.id.phoneNumberField)
-        getVerificationCodeButton = view.findViewById(R.id.getVerificationCodeButton)
-        getVerificationCodeButtonContainer = view.findViewById(R.id.getVerificationCodeButtonContainer)
+        val parentActivity = activity as RegistrationActivity
+
+
+            view.apply {
+                if (parentActivity.isRegistrationProcess) {
+                    findViewById<TextView>(R.id.activityTitle).setText(R.string.loginTitle)
+                    findViewById<TextView>(R.id.activitySubtitle).setText(R.string.weWereMissingYouSubtitle)
+                }
+
+                phoneNumberField = findViewById(R.id.phoneNumberField)
+                getVerificationCodeButton = findViewById(R.id.getVerificationCodeButton)
+                getVerificationCodeButtonContainer = findViewById(R.id.getVerificationCodeButtonContainer)
+            }
 
         getVerificationCodeButtonContainer.apply {
             alpha = 0f
@@ -44,13 +55,17 @@ class RegistrationPhoneNumberFragment : Fragment() {
         getVerificationCodeButton.isEnabled = false
 
         getVerificationCodeButton.setOnClickListener {
-            (activity as RegistrationActivity).apply {
-                userNumber = "7${cleanPhoneNumber(phoneNumberField.text.toString())}"
+            parentActivity.apply {
+                userPhoneNumber = "7${cleanPhoneNumber(phoneNumberField.text.toString())}"
 
-                if (UserData.hasUserWithPhoneNumber(userNumber))
+                if (isRegistrationProcess && UserData.hasUserWithPhoneNumber(userPhoneNumber))
                     Toast.makeText(this, R.string.phoneNumberDuplicationIssue, Toast.LENGTH_LONG).show()
-                else
+                else if (!isRegistrationProcess && !UserData.hasUserWithPhoneNumber(userPhoneNumber))
+                    Toast.makeText(this, R.string.phoneNumberDoesNotExistIssue, Toast.LENGTH_LONG).show()
+                else {
+                    verificationCodeSender.sendVerificationCode(userPhoneNumber)
                     showNextFragment(RegistrationVerificationCodeFragment())
+                }
             }
         }
 

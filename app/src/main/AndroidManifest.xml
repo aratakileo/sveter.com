@@ -18,18 +18,22 @@
         <activity
             android:name=".RegistrationActivity"
             android:exported="true"
-            android:label="@string/registrationTitle"/>
+            android:label="@string/registrationTitle"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".SelectLoginOrRegistrationActivity"
-            android:exported="true">
+            android:exported="true"
+            android:screenOrientation="portrait">
         </activity>
         <activity
             android:name=".LoginActivity"
             android:exported="true"
-            android:label="@string/loginSignAction" />
+            android:label="@string/loginAction"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".MainActivity"
-            android:exported="true">
+            android:exported="true"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -37,5 +41,4 @@
             </intent-filter>
         </activity>
     </application>
-
 </manifest>

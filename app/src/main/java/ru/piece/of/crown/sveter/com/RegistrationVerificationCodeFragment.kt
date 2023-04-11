@@ -54,8 +54,12 @@ class RegistrationVerificationCodeFragment : Fragment() {
 
         applyConfirmationCodeButton.setOnClickListener {
             (activity as RegistrationActivity).apply {
-                if (verificationCodeSender.isValidCode(confirmationCodeField.text.toString()))
-                    showNextFragment(RegistrationUserDataFragment())
+                if (verificationCodeSender.isValidCode(confirmationCodeField.text.toString())) {
+                    if (isRegistrationProcess)
+                        showNextFragment(RegistrationUserDataFragment())
+                    else
+                        showNextFragment(RegistrationPasswordFragment())
+                }
                 else
                     Toast.makeText(this, R.string.invalidConfirmationCodeIssue, Toast.LENGTH_SHORT).show()
             }

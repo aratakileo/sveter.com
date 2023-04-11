@@ -1,5 +1,6 @@
 import android.content.Context
 import android.content.SharedPreferences
+import com.google.firebase.firestore.QueryDocumentSnapshot
 import com.google.firebase.firestore.QuerySnapshot
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -21,15 +22,20 @@ object UserData {
         return if (querySnapshot.isSuccessful) querySnapshot.result else null
     }
 
-    fun getPhoneNumber(context: Context): String? = getLocalUserData(context).getString("phoneNumber", null)
-
-    fun hasUserWithPhoneNumber(phoneNumber: String): Boolean {
+    fun getUserDataByPhoneNumber(phoneNumber: String): QueryDocumentSnapshot? {
         getUsersData()?.forEach { queryDocumentSnapshot ->
             if (queryDocumentSnapshot.id == phoneNumber)
-                return true
+                return queryDocumentSnapshot
         }
-        return false
+
+        return null
     }
+
+    fun getPhoneNumber(context: Context): String? = getLocalUserData(context).getString("phoneNumber", null)
+
+    fun hasUserWithPhoneNumber(phoneNumber: String): Boolean = getUserDataByPhoneNumber(phoneNumber) != null
+
+    fun isPasswordCorrect(phoneNumber: String, password: String): Boolean = getUserDataByPhoneNumber(phoneNumber)!!.get("password") == password
 
     fun isUserAlreadyLogin(context: Context): Boolean = getPhoneNumber(context) != null
 
