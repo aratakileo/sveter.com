@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
     <LinearLayout
+        android:id="@+id/rootView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
@@ -19,7 +20,8 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/navBarHeight"
             android:translationY="@dimen/navBarTranslationY"
-            android:elevation="15dp">
+            android:elevation="15dp"
+            android:background="@color/material_on_primary_disabled">
             <LinearLayout
                 android:id="@+id/firstItem"
                 android:layout_width="match_parent"

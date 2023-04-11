@@ -49,6 +49,4 @@
 
     <string name="yandexMapAPIToken">6b23293d–5586–402c-ad1f-aaebec4c56a8</string>
     <string name="smsRuAPIToken">C6B81E61-B058-7096-454F-DCDAC966B22E</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
