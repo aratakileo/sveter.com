@@ -22,7 +22,7 @@
                 android:layout_marginTop="32dp"
                 android:fontFamily="sans-serif-black"
                 android:gravity="center_horizontal"
-                android:text="@string/registrationSign"
+                android:text="@string/registrationTitle"
                 android:textColor="@color/white"
                 android:textSize="35sp"
                 android:layout_marginBottom="5dp"/>
@@ -32,7 +32,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-medium"
-                android:text="@string/registrationSignDescription"
+                android:text="@string/registrationSubtitle"
                 android:textColor="@color/white"
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"

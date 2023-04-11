@@ -18,7 +18,7 @@
         <activity
             android:name=".RegistrationActivity"
             android:exported="true"
-            android:label="@string/registrationSign"/>
+            android:label="@string/registrationTitle"/>
         <activity
             android:name=".SelectLoginOrRegistrationActivity"
             android:exported="true">

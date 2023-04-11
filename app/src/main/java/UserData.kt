@@ -1,5 +1,6 @@
 import android.content.Context
 import android.content.SharedPreferences
+import com.google.firebase.firestore.QuerySnapshot
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
@@ -11,13 +12,23 @@ object UserData {
         SUCCESSFUL, ALREADY_LOGIN, USER_WITH_THIS_NUMBER_DOES_NOT_EXISTS_OR_WRONG_PASSWORD, NETWORK_ISSUE
     }
 
-    fun getData(context: Context): SharedPreferences = context.getSharedPreferences("user", Context.MODE_PRIVATE)
+    fun getLocalUserData(context: Context): SharedPreferences = context.getSharedPreferences("user", Context.MODE_PRIVATE)
 
-    fun getPhoneNumber(context: Context): String? = getData(context).getString("phoneNumber", null)
+    fun getUsersData(): QuerySnapshot = Firebase.firestore.collection("users").get().result
+
+    fun getPhoneNumber(context: Context): String? = getLocalUserData(context).getString("phoneNumber", null)
+
+    fun hasUserWithPhoneNumber(phoneNumber: String): Boolean {
+        getUsersData().forEach { queryDocumentSnapshot ->
+            if (queryDocumentSnapshot.id == phoneNumber)
+                return true
+        }
+        return false
+    }
 
     fun isUserAlreadyLogin(context: Context): Boolean = getPhoneNumber(context) != null
 
-    fun registrationUser(
+    fun registrateUser(
         context: Context,
         firstName: String,
         lastName: String,
@@ -45,7 +56,7 @@ object UserData {
 
         if (registrationRequestCode != RegistrationRequestCode.SUCCESSFUL) return registrationRequestCode
 
-        userCollection.add(hashMapOf(
+        userCollection.document(phoneNumber).set(hashMapOf(
             "firstName" to firstName,
             "lastName" to lastName,
             "dateOfBirth" to dateOfBirth,
@@ -56,7 +67,7 @@ object UserData {
 
         if (registrationRequestCode != RegistrationRequestCode.SUCCESSFUL) return registrationRequestCode
 
-        getData(context).edit().apply {
+        getLocalUserData(context).edit().apply {
             putString("phoneNumber", phoneNumber)
             apply()
         }
@@ -89,7 +100,7 @@ object UserData {
 
         if (loginRequestCode != LoginRequestCode.SUCCESSFUL) return loginRequestCode
 
-        getData(context).edit().apply {
+        getLocalUserData(context).edit().apply {
             putString("phoneNumber", phoneNumber)
             apply()
         }

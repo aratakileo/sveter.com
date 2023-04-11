@@ -5,11 +5,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Toast
-import androidx.cardview.widget.CardView
 import androidx.core.widget.doOnTextChanged
 
 /**
@@ -57,7 +55,7 @@ class RegistrationVerificationCodeFragment : Fragment() {
         applyConfirmationCodeButton.setOnClickListener {
             (activity as RegistrationActivity).apply {
                 if (verificationCodeSender.isValidCode(confirmationCodeField.text.toString()))
-                    showNextFragment(RegistrationPersonalDataFragment())
+                    showNextFragment(RegistrationUserDataFragment())
                 else
                     Toast.makeText(this, R.string.invalidConfirmationCodeIssue, Toast.LENGTH_SHORT).show()
             }

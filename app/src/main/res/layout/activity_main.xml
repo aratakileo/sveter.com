@@ -37,7 +37,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/mainSignWelcomeBack"
+                    android:text="@string/welcomeBackSign"
                     android:fontFamily="sans-serif-medium"
                     android:textSize="15sp"
                     android:textColor="@color/dirty_grey"/>
@@ -45,7 +45,7 @@
                     android:id="@+id/userName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/mainSignQuest"
+                    android:text="@string/questSign"
                     android:fontFamily="sans-serif-black"
                     android:textSize="20sp"/>
             </LinearLayout>
@@ -103,14 +103,14 @@
                                 <TextView
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:text="@string/mainSignBannerStartRide"
+                                    android:text="@string/startRideTitle"
                                     android:fontFamily="sans-serif-black"
                                     android:textSize="20sp"
                                     android:textColor="@color/white"/>
                                 <TextView
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:text="@string/mainSignBannerStartRideDescription"
+                                    android:text="@string/startRideSubtitle"
                                     android:fontFamily="sans-serif-medium"
                                     android:textSize="15sp"
                                     android:textColor="@color/white"/>

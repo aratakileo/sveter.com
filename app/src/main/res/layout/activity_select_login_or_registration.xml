@@ -20,7 +20,7 @@
         android:layout_marginTop="32dp"
         android:fontFamily="sans-serif-black"
         android:gravity="center_horizontal"
-        android:text="@string/letsTravelSign"
+        android:text="@string/letsTravelTitle"
         android:textColor="@color/white"
         android:textSize="30sp"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
@@ -30,7 +30,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif-medium"
-        android:text="@string/welcomeSign"
+        android:text="@string/welcomeToAppTitle"
         android:textColor="@color/white"
         android:textSize="20sp"
         android:gravity="center_horizontal"
