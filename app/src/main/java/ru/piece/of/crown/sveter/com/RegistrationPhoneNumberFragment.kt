@@ -1,15 +1,14 @@
 package ru.piece.of.crown.sveter.com
 
 import android.os.Bundle
-import android.text.Editable
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
-import androidx.core.widget.doAfterTextChanged
-import androidx.core.widget.doBeforeTextChanged
+import android.widget.Toast
+import androidx.cardview.widget.CardView
 import androidx.core.widget.doOnTextChanged
 
 /**
@@ -47,7 +46,7 @@ class RegistrationPhoneNumberFragment : Fragment() {
         }
 
         private fun transformCursorPosition(sourcePosition: Int, isDecrease: Boolean = false): Int {
-            var outputPosition = sourcePosition + if (isDecrease) 0 else 1
+            var outputPosition = sourcePosition + if (isDecrease || sourcePosition == 13) 0 else 1
 
             if (outputPosition == 11 || outputPosition == 8 || outputPosition == 4)
                 outputPosition += if (isDecrease) -1 else 1
@@ -58,6 +57,7 @@ class RegistrationPhoneNumberFragment : Fragment() {
 
     lateinit var phoneNumberField: EditText
     lateinit var getVerificationCodeButton: Button
+    lateinit var getVerificationCodeButtonContainer: CardView
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -72,23 +72,45 @@ class RegistrationPhoneNumberFragment : Fragment() {
 
         phoneNumberField = view.findViewById(R.id.phoneNumberField)
         getVerificationCodeButton = view.findViewById(R.id.getVerificationCodeButton)
+        getVerificationCodeButtonContainer = view.findViewById(R.id.getVerificationCodeButtonContainer)
+
+        getVerificationCodeButtonContainer.apply {
+            alpha = 0f
+            translationY = 50f
+        }
+        getVerificationCodeButton.isEnabled = false
 
         getVerificationCodeButton.setOnClickListener {
-            activity
-                ?.supportFragmentManager
-                ?.beginTransaction()
-                ?.setCustomAnimations(R.anim.slide_out_left, R.anim.slide_in_right)
-                ?.replace(R.id.container, RegistrationVerificationCodeFragment())
-                ?.commit()
+            (activity as RegistrationActivity).apply {
+                when (verificationCodeSender.sendVerificationCode("7${cleanPhoneNumber(phoneNumberField.text.toString())}")) {
+                    VerificationCodeSender.SendVerificationMessageRequestCode.SUCCESSFUL -> showNextFragment(RegistrationVerificationCodeFragment())
+                    VerificationCodeSender.SendVerificationMessageRequestCode.NETWORK_ISSUE -> Toast.makeText(activity, R.string.networkIssue, Toast.LENGTH_LONG).show()
+                }
+            }
         }
 
         var ignoreAction = false
 
         phoneNumberField.doOnTextChanged { text, start, before, count ->
+            if (text?.length == 13) {
+                if (!getVerificationCodeButton.isEnabled)
+                    getVerificationCodeButtonContainer.apply {
+                        getVerificationCodeButton.isEnabled = true
+                        animate().alpha(1f).translationY(0f).duration = 1000
+                    }
+            } else if (getVerificationCodeButton.isEnabled)
+                getVerificationCodeButtonContainer.apply {
+                    getVerificationCodeButton.isEnabled = false
+                    animate().alpha(0f).translationY(50f).duration = 1000
+                }
+            
             if (ignoreAction) return@doOnTextChanged
             ignoreAction = true
-            phoneNumberField.setText(formatPhoneNumber(text.toString()))
-            phoneNumberField.setSelection(transformCursorPosition(start, before != 0))
+            val textString = text.toString()
+            println(textString)
+            val cursorPositionDecrease = textString.length - textString.replace(".", "").length
+            phoneNumberField.setText(formatPhoneNumber(textString))
+            phoneNumberField.setSelection(transformCursorPosition(start, before != 0) - cursorPositionDecrease)
             ignoreAction = false
         }
     }

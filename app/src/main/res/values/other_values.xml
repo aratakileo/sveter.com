@@ -2,4 +2,5 @@
 <resources>
     <dimen name="defaultMargin">10dp</dimen>
     <dimen name="filledButtonCornerRadius">35dp</dimen>
+    <integer name="confirmationCodeLength">6</integer>
 </resources>

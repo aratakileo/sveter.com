@@ -15,6 +15,7 @@ class LoginActivity : AppCompatActivity() {
         var startGettingCode = false
 
         val verificationCodeSender = VerificationCodeSender(
+            resources.getString(R.string.smsRuAPIToken),
             resources.getString(R.string.confirmationCodeMessage),
             6
         )
@@ -26,7 +27,7 @@ class LoginActivity : AppCompatActivity() {
 
         button.setOnClickListener {
             if (startGettingCode) {
-                if (verificationCodeSender.isValidKey(code.text.toString())) finish()
+                if (verificationCodeSender.isValidCode(code.text.toString())) finish()
                 else Toast.makeText(this@LoginActivity, "Invalid code!", Toast.LENGTH_SHORT).show()
             } else verificationCodeSender.sendVerificationCode(phoneNumber.text.toString())
 

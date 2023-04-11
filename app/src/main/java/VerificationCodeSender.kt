@@ -3,12 +3,9 @@ import okhttp3.OkHttpClient
 import okhttp3.Request
 import java.net.URLEncoder
 import kotlin.random.Random
+import kotlin.random.nextInt
 
 class VerificationCodeSender(private val token: String, private val message: String, val codeLength: Int) {
-    companion object {
-        private const val ALPHABET = "1234567890"
-    }
-
     enum class SendVerificationMessageRequestCode {
         SUCCESSFUL, NETWORK_ISSUE
     }
@@ -17,19 +14,27 @@ class VerificationCodeSender(private val token: String, private val message: Str
         StrictMode.setThreadPolicy(StrictMode.ThreadPolicy.Builder().permitAll().build())
     }
 
-    private var key: String? = null
+    private var code: String? = null
     private val client = OkHttpClient()
 
-    fun generateKey() {
-        key = ""
-        repeat(codeLength) {
-            key += ALPHABET[Random.nextInt(0, ALPHABET.length - 1)]
-        }
-        println(key)
+    fun generateCode() {
+        code = Random.nextInt(0 until 10 * codeLength).toString()
     }
 
     fun sendVerificationCode(phoneNumber: String): SendVerificationMessageRequestCode {
-        if (key == null) generateKey()
+        if (phoneNumber == "70000000000") {
+            code = ""
+
+            repeat(codeLength) {
+                code += "0"
+            }
+
+            println("Using debug code: $code")
+
+            return SendVerificationMessageRequestCode.SUCCESSFUL
+        }
+
+        if (code == null) generateCode()
 
         var responseIsSuccessful: Boolean
 
@@ -38,7 +43,7 @@ class VerificationCodeSender(private val token: String, private val message: Str
                 URLEncoder.encode(
                     message.replace(
                         "%key%",
-                        key!!
+                        code!!
                     ), "UTF-8"
                 )
             }&json=1").build()
@@ -64,9 +69,9 @@ class VerificationCodeSender(private val token: String, private val message: Str
 //        }
     }
 
-    fun isValidKey(key: String): Boolean {
-        if (key == this.key) {
-            this.key = null
+    fun isValidCode(code: String): Boolean {
+        if (code == this.code) {
+            this.code = null
             return true
         }
 

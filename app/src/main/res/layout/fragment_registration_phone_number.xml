@@ -65,13 +65,14 @@
                     android:fontFamily="sans-serif-medium"
                     android:maxLines="1"
                     android:textSize="16sp"
-                    android:inputType="phone"
+                    android:inputType="numberDecimal"
                     android:textColor="@color/dirty_grey"
-                    android:hint="@string/phoneNumber"
+                    android:hint="@string/phoneNumberHint"
                     android:textColorHint="@color/light_grey"/>
             </LinearLayout>
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/getVerificationCodeButtonContainer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
