@@ -87,7 +87,7 @@
                     android:id="@+id/getVerificationCodeButton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/filled_button_orange_ripple_animation"
+                    android:background="@drawable/ripple_animation_light_orange_oval"
                     android:text="@string/getVerificationCodeAction"
                     android:textAllCaps="false"
                     android:textColor="@color/white"/>
