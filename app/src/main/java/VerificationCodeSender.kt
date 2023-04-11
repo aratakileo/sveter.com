@@ -18,7 +18,11 @@ class VerificationCodeSender(private val token: String, private val message: Str
     private val client = OkHttpClient()
 
     fun generateCode() {
-        code = Random.nextInt(0 until 10 * codeLength).toString()
+        code = ""
+
+        repeat(codeLength) {
+            code += "1234567890"[Random.nextInt(0..9)]
+        }
     }
 
     fun sendVerificationCode(phoneNumber: String): SendVerificationMessageRequestCode {
@@ -53,20 +57,6 @@ class VerificationCodeSender(private val token: String, private val message: Str
         }
 
         return if (responseIsSuccessful) SendVerificationMessageRequestCode.SUCCESSFUL else SendVerificationMessageRequestCode.NETWORK_ISSUE
-
-//        try {
-//            client.newCall(request).execute().use { response ->
-//                if (!response.isSuccessful) {
-//                    throw IOException()
-//                }
-//                // пример получения конкретного заголовка ответа
-//                println("Server: ${response.header("Server")}")
-//                // вывод тела ответа
-//                println(response.body!!.string())
-//            }
-//        } catch (e: IOException) {
-//            println("Ошибка подключения: $e");
-//        }
     }
 
     fun isValidCode(code: String): Boolean {

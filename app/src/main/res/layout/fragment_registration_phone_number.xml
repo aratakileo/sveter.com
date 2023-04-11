@@ -86,7 +86,8 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/filled_button_orange_ripple_animation"
                     android:text="@string/getVerificationCodeAction"
-                    android:textAllCaps="false"/>
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"/>
             </androidx.cardview.widget.CardView>
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
