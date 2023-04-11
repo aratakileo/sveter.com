@@ -67,6 +67,7 @@ class RegistrationPasswordFragment : Fragment() {
                         UserData.loginUser(this, userPhoneNumber, password)
 
                     if (isPossibleToFinish) {
+                        overridePendingTransition(R.anim.slide_out_left, R.anim.slide_in_right)
                         startActivity(Intent(this, MainActivity::class.java))
                         finish()
                     }
