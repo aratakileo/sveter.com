@@ -30,9 +30,10 @@ class MainTravelFragment : Fragment() {
     }
 
     private fun startChoosingPathLike(role: String) {
-        startActivity(Intent(requireActivity(), ChoosingPathActivity::class.java).apply {
+        startActivity(Intent(requireActivity(), ChoosingTravelPathActivity::class.java).apply {
             putExtra("role", role)
         })
+        requireActivity().overridePendingTransition(R.anim.slide_in_top, R.anim.slide_out_top)
     }
 
     companion object {

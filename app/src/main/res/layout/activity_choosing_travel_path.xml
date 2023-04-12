@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ChoosingPathActivity"
+    tools:context=".ChoosingTravelPathActivity"
     android:background="@color/dark_green">
 
     <LinearLayout
@@ -54,7 +54,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-medium"
-            android:text="@string/choosePathByMapSubtitle"
+            android:text="@string/chooseTravelPathByMapSubtitle"
             android:textColor="@color/white"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
@@ -74,5 +74,19 @@
                 android:layout_height="match_parent"/>
         </androidx.cardview.widget.CardView>
     </LinearLayout>
+
+    <ImageView
+        android:id="@+id/applyPathPointsButton"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:padding="15dp"
+        android:scaleType="fitXY"
+        android:background="@drawable/green_filled_oval_ripple_animation_light_green_rectangle"
+        android:clickable="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginBottom="20dp"
+        android:layout_marginEnd="20dp"
+        android:src="@drawable/white_arrow_forward"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -16,8 +16,9 @@
     <string name="registrationSubtitle">Зарегистрируйтесь с помощью номера телефона и отправляйтесь в путешестиве</string>
     <string name="startRideSubtitle">Организуйте или присоеденитесь к поездке 🚗</string>
     <string name="makeDecisionAboutRoleSubtitle">Вы будете в роли пассажира или водителя транспорта?</string>
-    <string name="choosePathSubtitle">Выберите начальную и конечную точку поездки</string>
-    <string name="choosePathByMapSubtitle">Вы также можете выбрать нужную точку на карте</string>
+    <string name="chooseTravelPathSubtitle">Выберите начальную и конечную точку поездки</string>
+    <string name="chooseTravelPathByMapSubtitle">Вы также можете выбрать нужную точку на карте</string>
+    <string name="chooseOtherTravelParametersSubtitle">Укажите дополнительную ифнормацию</string>
 
     <string name="insertLoginPasswordTitle">Введите пароль</string>
     <string name="protectAccountTitle">Защитите аккаунт</string>
@@ -29,7 +30,8 @@
     <string name="welcomeToAppTitle">Добро пожаловать в Светер.ком</string>
     <string name="startRideTitle">Поехали</string>
     <string name="makeDecisionAboutRoleTitle">Кем будете?</string>
-    <string name="choosePathTitle">Укажите путь</string>
+    <string name="chooseTravelPathTitle">Укажите путь</string>
+    <string name="chooseOtherTravelParametersTitle">Уточните</string>
 
     <string name="iAmNewHereAction">Я тут впервые</string>
     <string name="loginAction">Войти в аккаунт</string>
@@ -37,6 +39,7 @@
     <string name="iAmPassengerAction">Я — пассажир</string>
     <string name="iAmDriverAction">Я — водитель</string>
     <string name="closeAction">Закрыть</string>
+    <string name="goBackAction">Вернуться</string>
 
     <string name="phoneNumberHint">Номер телефона</string>
     <string name="confirmationCodeHint">Код подтверждения</string>

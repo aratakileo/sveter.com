@@ -1,5 +1,6 @@
 package ru.piece.of.crown.sveter.com
 
+import Util
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -17,13 +18,15 @@ class SelectLoginOrRegistrationActivity : AppCompatActivity() {
         loginButton = findViewById(R.id.loginButton)
 
         iAmNewHereButton.setOnClickListener {
-            startActivity(Intent(this, RegistrationActivity::class.java))
-            overridePendingTransition(R.anim.slide_out_left, R.anim.slide_in_right)
+            Util.startActivityWithHorizontalSlideAnimation(this, RegistrationActivity::class.java)
+//            startActivity(Intent(this, RegistrationActivity::class.java))
+//            overridePendingTransition(R.anim.slide_out_left, R.anim.slide_in_right)
         }
 
         loginButton.setOnClickListener {
-            startActivity(Intent(this, LoginActivity::class.java))
-            overridePendingTransition(R.anim.slide_out_left, R.anim.slide_in_right)
+            Util.startActivityWithHorizontalSlideAnimation(this, LoginActivity::class.java)
+//            startActivity(Intent(this, LoginActivity::class.java))
+//            overridePendingTransition(R.anim.slide_out_left, R.anim.slide_in_right)
         }
 
         supportActionBar?.hide()
