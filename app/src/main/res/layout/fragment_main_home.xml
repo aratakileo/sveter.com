@@ -61,7 +61,7 @@
                     android:layout_marginStart="8dp"
                     android:src="@drawable/green_notifications_bell"
                     android:clickable="true"
-                    android:background="@drawable/on_light_background_circle_ripple"/>
+                    android:background="@drawable/ripple_animation_light_green_circle"/>
             </LinearLayout>
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"

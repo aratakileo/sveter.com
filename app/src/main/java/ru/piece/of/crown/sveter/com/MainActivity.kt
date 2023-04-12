@@ -3,10 +3,7 @@ package ru.piece.of.crown.sveter.com
 import NavigationBarController
 import UserData
 import android.content.Intent
-import android.content.res.Configuration
-import android.graphics.Color
 import android.os.Bundle
-import android.util.TypedValue
 import android.view.View
 import android.widget.ImageView
 import android.widget.LinearLayout
@@ -28,7 +25,7 @@ class MainActivity : AppCompatActivity() {
 
         supportActionBar?.hide()
 
-        if (getThemeType() == Configuration.UI_MODE_NIGHT_NO) {
+        if (Util.isLightThemeNow(this)) {
             window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
             window.statusBarColor = resources.getColor(R.color.white, theme)
         } else
@@ -72,6 +69,4 @@ class MainActivity : AppCompatActivity() {
             navigationBarController.selectItem(MainProfileFragment.ITEM_INDEX)
         }
     }
-
-    private fun getThemeType(): Int = resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK
 }

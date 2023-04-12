@@ -85,9 +85,7 @@
                     android:id="@+id/thirdItemIcon"
                     android:layout_width="@dimen/navBarItemIconSize"
                     android:layout_height="@dimen/navBarItemIconSize"
-                    android:src="@drawable/dirty_grey_notifications_bell"
-                    android:scaleX="1.2"
-                    android:scaleY="1.2"/>
+                    android:src="@drawable/dirty_grey_notifications_bell"/>
                 <TextView
                     android:id="@+id/thirdItemTitle"
                     android:layout_width="wrap_content"

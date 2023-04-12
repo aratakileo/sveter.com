@@ -30,12 +30,30 @@ class MainHomeFragment : Fragment() {
             userAvatar = findViewById(R.id.userAvatar)
             userName = findViewById(R.id.userName)
 
-            findViewById<ImageView>(R.id.notificationsButton).setOnClickListener {
-                parentActivity.navigationBarController.selectItem(MainInboxFragment.ITEM_INDEX)
+            findViewById<ImageView>(R.id.notificationsButton).apply {
+                if (Util.isDarkThemeNow(context)) {
+                    background = resources.getDrawable(
+                        R.drawable.ripple_animation_light_orange_circle,
+                        parentActivity.theme
+                    )
+                    setColorFilter(resources.getColor(R.color.light_orange, parentActivity.theme))
+                }
+
+                setOnClickListener {
+                    parentActivity.navigationBarController.selectItem(MainInboxFragment.ITEM_INDEX)
+                }
             }
 
-            findViewById<LinearLayout>(R.id.profileCard).setOnClickListener {
-                parentActivity.navigationBarController.selectItem(MainProfileFragment.ITEM_INDEX)
+            findViewById<LinearLayout>(R.id.profileCard).apply {
+                if (Util.isDarkThemeNow(context)) {
+                    background = resources.getDrawable(
+                        R.drawable.ripple_animation_light_orange_rounded_square,
+                        parentActivity.theme
+                    )
+                }
+                setOnClickListener {
+                    parentActivity.navigationBarController.selectItem(MainProfileFragment.ITEM_INDEX)
+                }
             }
 
             findViewById<LinearLayout>(R.id.runNewTravelButton).setOnClickListener {

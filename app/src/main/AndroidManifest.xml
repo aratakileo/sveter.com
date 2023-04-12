@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
 
     <application
@@ -15,21 +16,26 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Svetercom"
         tools:targetApi="31">
+
+        <activity
+            android:name=".ChoosingPathActivity"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:label="@string/choosePathTitle"/>
         <activity
             android:name=".RegistrationActivity"
             android:exported="true"
             android:label="@string/registrationTitle"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".SelectLoginOrRegistrationActivity"
             android:exported="true"
-            android:screenOrientation="portrait">
-        </activity>
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".LoginActivity"
             android:exported="true"
             android:label="@string/loginAction"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".MainActivity"
             android:exported="true"
@@ -41,4 +47,5 @@
             </intent-filter>
         </activity>
     </application>
+
 </manifest>

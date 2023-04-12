@@ -15,6 +15,9 @@
     <string name="letsGetToKnowEachOtherBetterSubtitle">Давайте познакомимся поближе</string>
     <string name="registrationSubtitle">Зарегистрируйтесь с помощью номера телефона и отправляйтесь в путешестиве</string>
     <string name="startRideSubtitle">Организуйте или присоеденитесь к поездке 🚗</string>
+    <string name="makeDecisionAboutRoleSubtitle">Вы будете в роли пассажира или водителя транспорта?</string>
+    <string name="choosePathSubtitle">Выберите начальную и конечную точку поездки</string>
+    <string name="choosePathByMapSubtitle">Вы также можете выбрать нужную точку на карте</string>
 
     <string name="insertLoginPasswordTitle">Введите пароль</string>
     <string name="protectAccountTitle">Защитите аккаунт</string>
@@ -25,10 +28,15 @@
     <string name="letsTravelTitle">Давайте путешествовать</string>
     <string name="welcomeToAppTitle">Добро пожаловать в Светер.ком</string>
     <string name="startRideTitle">Поехали</string>
+    <string name="makeDecisionAboutRoleTitle">Кем будете?</string>
+    <string name="choosePathTitle">Укажите путь</string>
 
     <string name="iAmNewHereAction">Я тут впервые</string>
     <string name="loginAction">Войти в аккаунт</string>
     <string name="getVerificationCodeAction">Получить код</string>
+    <string name="iAmPassengerAction">Я — пассажир</string>
+    <string name="iAmDriverAction">Я — водитель</string>
+    <string name="closeAction">Закрыть</string>
 
     <string name="phoneNumberHint">Номер телефона</string>
     <string name="confirmationCodeHint">Код подтверждения</string>
@@ -37,6 +45,8 @@
     <string name="dateOfBirthHint">Дата рождения</string>
     <string name="passwordHint">Пароль</string>
     <string name="passwordConfirmationHint">Потверждение пароля</string>
+    <string name="pointOfDepartureHint">Начальная точка</string>
+    <string name="pointOfArrivalHint">Конечная точка</string>
 
     <string name="networkIssue">Ошибка: Проблемы с подключением к сети</string>
     <string name="invalidConfirmationCodeIssue">Ошибка: Неверный код подтверждения</string>
@@ -47,6 +57,6 @@
 
     <string name="confirmationCodeMessage">"Vash kod podtverzhdeniya. Ne soobshchayte nikomu!\n%key%\n\nSveter.com"</string>
 
-    <string name="yandexMapAPIToken">6b23293d–5586–402c-ad1f-aaebec4c56a8</string>
+    <string name="yandexMapAPIToken">6b23293d-5586-402c-ad1f-aaebec4c56a8</string>
     <string name="smsRuAPIToken">C6B81E61-B058-7096-454F-DCDAC966B22E</string>
 </resources>

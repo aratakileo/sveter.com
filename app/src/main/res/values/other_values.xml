@@ -5,7 +5,7 @@
     <integer name="confirmationCodeLength">6</integer>
     <dimen name="navBarHeight">55dp</dimen>
     <dimen name="navBarTranslationY">-55dp</dimen>
-    <dimen name="navBarItemIconSize">30dp</dimen>
+    <dimen name="navBarItemIconSize">35dp</dimen>
     <dimen name="navBarItemTitleSize">12sp</dimen>
     <dimen name="navBarItemSidesPadding">5dp</dimen>
 </resources>

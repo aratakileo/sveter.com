@@ -19,14 +19,78 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            app:cardBackgroundColor="@color/dark_orange"
+            app:cardBackgroundColor="@color/dark_green"
             app:cardCornerRadius="@dimen/filledButtonCornerRadius">
 
-            <Button
-                android:text="Кнопка хуй знает чего"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/ripple_animation_light_orange_oval" />
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:orientation="vertical"
+               android:gravity="center"
+               android:padding="10dp">
+               <TextView
+                   android:id="@+id/activityTitle"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:fontFamily="sans-serif-black"
+                   android:gravity="center_horizontal"
+                   android:text="@string/makeDecisionAboutRoleTitle"
+                   android:textColor="@color/white"
+                   android:textSize="35sp"
+                   android:layout_marginBottom="5dp"/>
+
+               <TextView
+                   android:id="@+id/activitySubtitle"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:fontFamily="sans-serif-medium"
+                   android:text="@string/makeDecisionAboutRoleSubtitle"
+                   android:textColor="@color/white"
+                   android:textSize="16sp"
+                   android:gravity="center_horizontal"
+                   android:layout_marginBottom="10dp"/>
+
+               <androidx.cardview.widget.CardView
+                   android:id="@+id/cardView"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   app:layout_constraintEnd_toEndOf="parent"
+                   app:layout_constraintStart_toStartOf="parent"
+                   app:layout_constraintTop_toBottomOf="@+id/activitySubtitle"
+                   app:cardCornerRadius="@dimen/filledButtonCornerRadius"
+                   app:cardBackgroundColor="@color/white"
+                   android:layout_marginBottom="10dp">
+
+                   <Button
+                       android:id="@+id/iAmPassengerButton"
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content"
+                       android:background="@drawable/ripple_animation_light_green_oval"
+                       android:text="@string/iAmPassengerAction"
+                       android:textAllCaps="false"
+                       android:textColor="@color/dark_green" />
+               </androidx.cardview.widget.CardView>
+
+               <androidx.cardview.widget.CardView
+                   android:id="@+id/cardView1"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   app:layout_constraintEnd_toEndOf="parent"
+                   app:layout_constraintStart_toStartOf="parent"
+                   app:layout_constraintTop_toBottomOf="@+id/activitySubtitle"
+                   app:cardCornerRadius="@dimen/filledButtonCornerRadius"
+                   app:cardBackgroundColor="@color/white">
+
+                   <Button
+                       android:id="@+id/iAmDriverButton"
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content"
+                       android:background="@drawable/ripple_animation_light_green_oval"
+                       android:text="@string/iAmDriverAction"
+                       android:textAllCaps="false"
+                       android:textColor="@color/dark_green" />
+               </androidx.cardview.widget.CardView>
+           </LinearLayout>
         </androidx.cardview.widget.CardView>
     </LinearLayout>
 
