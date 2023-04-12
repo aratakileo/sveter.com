@@ -14,7 +14,9 @@ import com.ozcanalasalvar.library.view.popup.DatePickerPopup
 import com.ozcanalasalvar.library.view.popup.TimePickerPopup
 import finishActivityWithHorizontalSlideAnimation
 import formatNumber
+import getOnlyDigits
 import isDarkThemeNow
+import safeSubstring
 
 class ChoosingOtherTravelParametersActivity : AppCompatActivity() {
     private var pickedDate = -1L
@@ -49,6 +51,8 @@ class ChoosingOtherTravelParametersActivity : AppCompatActivity() {
         departureDateField = findViewById(R.id.departureDateField)
         departureTimeField = findViewById(R.id.departureTimeField)
         tripCostField = findViewById(R.id.tripCostField)
+
+        tripCostField.setText(StringBuffer("0" + resources.getString(R.string.rubChar)))
 
         datePickerPopup = DatePickerPopup.Builder()
             .from(this)
@@ -94,8 +98,10 @@ class ChoosingOtherTravelParametersActivity : AppCompatActivity() {
         tripCostField.doOnTextChanged { text, start, before, count ->
             if (ignoreAction) return@doOnTextChanged
 
+            val newText = tripCostField.text.toString()
+
             ignoreAction = true
-            val (newString, newCursorPosition) = tripCostField.text.toString().formatNumber(
+            val (newString, newCursorPosition) = newText.formatNumber(
                 tripCostField.selectionStart,
                 {_, negativeIndex, _ ->
                     if (negativeIndex == -3) return@formatNumber " "
@@ -103,8 +109,9 @@ class ChoosingOtherTravelParametersActivity : AppCompatActivity() {
                 },
                 5
             )
-            tripCostField.setText(StringBuffer((newString?:"0") + "₽"))
+            tripCostField.setText(StringBuffer((newString?:"0") + resources.getString(R.string.rubChar)))
             tripCostField.setSelection(newCursorPosition?:1)
+            travelCost = newText.getOnlyDigits().toInt()
             ignoreAction = false
         }
 
