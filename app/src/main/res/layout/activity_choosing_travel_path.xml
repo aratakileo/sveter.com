@@ -79,7 +79,7 @@
         android:id="@+id/applyPathPointsButton"
         android:layout_width="@dimen/fabSize"
         android:layout_height="@dimen/fabSize"
-        android:padding="@dimen/fabArrowForwardPadding"
+        android:padding="@dimen/fabArrowPadding"
         android:scaleType="fitXY"
         android:background="@drawable/green_filled_oval_ripple_animation_light_green_rectangle"
         android:clickable="true"

@@ -13,7 +13,7 @@
 
     <dimen name="fabMargin">20dp</dimen>
     <dimen name="fabSize">60dp</dimen>
-    <dimen name="fabArrowForwardPadding">20dp</dimen>
+    <dimen name="fabArrowPadding">20dp</dimen>
     <dimen name="fabCheckPadding">15dp</dimen>
 
     <string name="defaultPassengersCount">2</string>
