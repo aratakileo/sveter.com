@@ -110,7 +110,7 @@ class ChoosingOtherTravelParametersActivity : AppCompatActivity() {
             )
             tripCostField.setText(StringBuffer((newString?:"0") + resources.getString(R.string.rubChar)))
             tripCostField.setSelection(newCursorPosition?:1)
-            travelCost = newText.getOnlyDigits().toInt()
+            travelCost = newText.getOnlyDigits().ifEmpty{"0"}.toInt()
             ignoreAction = false
         }
 
