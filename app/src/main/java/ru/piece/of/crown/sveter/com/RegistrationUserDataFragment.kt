@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.ImageView
 import androidx.core.widget.doOnTextChanged
+import getOnlyDigits
 
 /**
  * A simple [Fragment] subclass.
@@ -93,20 +94,8 @@ class RegistrationUserDataFragment : Fragment() {
     }
 
     companion object {
-        private fun cleanToNumber(sourceNumber: String): String {
-            var outputNumber =
-                sourceNumber.filter { char: Char ->
-                    char in "1234567890"
-                }
-
-            if (outputNumber.length > 8)
-                outputNumber = outputNumber.substring(0, 8)
-
-            return outputNumber
-        }
-
         private fun formatData(sourceNumber: String): String {
-            var outputNumber = cleanToNumber(sourceNumber)
+            var outputNumber = sourceNumber.getOnlyDigits(8)
 
             if (outputNumber.length > 4)
                 outputNumber = java.lang.StringBuilder(outputNumber).apply { insert(4, '/') }.toString()

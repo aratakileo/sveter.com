@@ -9,6 +9,7 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import isLightThemeNow
 
 class MainActivity : AppCompatActivity() {
     lateinit var navigationBarController: NavigationBarController
@@ -25,7 +26,7 @@ class MainActivity : AppCompatActivity() {
 
         supportActionBar?.hide()
 
-        if (Util.isLightThemeNow(this)) {
+        if (isLightThemeNow) {
             window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
             window.statusBarColor = resources.getColor(R.color.white, theme)
         } else

@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import isDarkThemeNow
 
 class MainHomeFragment : Fragment() {
     lateinit var userAvatar: ImageView
@@ -17,7 +18,6 @@ class MainHomeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_main_home, container, false)
     }
 
@@ -31,7 +31,7 @@ class MainHomeFragment : Fragment() {
             userName = findViewById(R.id.userName)
 
             findViewById<ImageView>(R.id.notificationsButton).apply {
-                if (Util.isDarkThemeNow(context)) {
+                if (context.isDarkThemeNow) {
                     background = resources.getDrawable(
                         R.drawable.ripple_animation_light_orange_circle,
                         parentActivity.theme
@@ -45,7 +45,7 @@ class MainHomeFragment : Fragment() {
             }
 
             findViewById<LinearLayout>(R.id.profileCard).apply {
-                if (Util.isDarkThemeNow(context)) {
+                if (context.isDarkThemeNow) {
                     background = resources.getDrawable(
                         R.drawable.ripple_animation_light_orange_rounded_square,
                         parentActivity.theme

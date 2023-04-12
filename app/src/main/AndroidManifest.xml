@@ -17,7 +17,7 @@
         android:theme="@style/Theme.Svetercom"
         tools:targetApi="31" >
         <activity
-            android:name=".ChoosingOtherTravelParamentersActivity"
+            android:name=".ChoosingOtherTravelParametersActivity"
             android:exported="true"
             android:label="@string/chooseOtherTravelParametersTitle"
             android:screenOrientation="portrait" />

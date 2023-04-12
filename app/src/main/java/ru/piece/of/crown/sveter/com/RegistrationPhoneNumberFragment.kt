@@ -12,6 +12,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.cardview.widget.CardView
 import androidx.core.widget.doOnTextChanged
+import getOnlyDigits
 
 /**
  * A simple [Fragment] subclass.
@@ -54,7 +55,7 @@ class RegistrationPhoneNumberFragment : Fragment() {
 
         getVerificationCodeButton.setOnClickListener {
             parentActivity.apply {
-                userPhoneNumber = "7${cleanPhoneNumber(phoneNumberField.text.toString())}"
+                userPhoneNumber = "7${phoneNumberField.text.toString().getOnlyDigits(10)}"
 
                 if (isRegistrationProcess && UserData.hasUserWithPhoneNumber(userPhoneNumber))
                     Toast.makeText(this, R.string.phoneNumberDuplicationIssue, Toast.LENGTH_LONG).show()
@@ -93,20 +94,8 @@ class RegistrationPhoneNumberFragment : Fragment() {
     }
 
     companion object {
-        private fun cleanPhoneNumber(sourceNumber: String): String {
-            var outputNumber =
-                sourceNumber.filter { char: Char ->
-                    char in "1234567890"
-                }
-
-            if (outputNumber.length > 10)
-                outputNumber = outputNumber.substring(0, 10)
-
-            return outputNumber
-        }
-
         private fun formatPhoneNumber(sourceNumber: String): String {
-            var outputNumber = cleanPhoneNumber(sourceNumber)
+            var outputNumber = sourceNumber.getOnlyDigits(10)
 
             if (outputNumber.length > 8)
                 outputNumber = java.lang.StringBuilder(outputNumber).apply { insert(8, '-') }.toString()

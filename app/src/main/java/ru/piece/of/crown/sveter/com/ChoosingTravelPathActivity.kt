@@ -1,6 +1,5 @@
 package ru.piece.of.crown.sveter.com
 
-import Util
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.drawable.ColorDrawable
@@ -14,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.yandex.mapkit.MapKitFactory
 import com.yandex.mapkit.mapview.MapView
+import isDarkThemeNow
 
 
 class ChoosingTravelPathActivity : AppCompatActivity() {
@@ -39,7 +39,7 @@ class ChoosingTravelPathActivity : AppCompatActivity() {
         applyPathPointsButton = findViewById(R.id.applyPathPointsButton)
 
         applyPathPointsButton.setOnClickListener {
-            startActivity(Intent(this, ChoosingOtherTravelParamentersActivity::class.java).apply {
+            startActivity(Intent(this, ChoosingOtherTravelParametersActivity::class.java).apply {
                 putExtra("role", userRole)
                 putExtra("pointOfDeparture", pointOfDepartureField.text.toString())
                 putExtra("pointOfArrival", pointOfArrivalField.text.toString())
@@ -48,7 +48,7 @@ class ChoosingTravelPathActivity : AppCompatActivity() {
         }
 
         supportActionBar?.apply {
-            if (Util.isDarkThemeNow(this@ChoosingTravelPathActivity))
+            if (isDarkThemeNow)
                 setBackgroundDrawable(ColorDrawable(resources.getColor(R.color.dark_green, theme)))
 
             subtitle = resources.getString(R.string.chooseTravelPathSubtitle)

@@ -1,10 +1,9 @@
 package ru.piece.of.crown.sveter.com
 
-import Util
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
+import startActivityWithHorizontalSlideAnimation
 
 class SelectLoginOrRegistrationActivity : AppCompatActivity() {
     lateinit var iAmNewHereButton: Button
@@ -18,13 +17,13 @@ class SelectLoginOrRegistrationActivity : AppCompatActivity() {
         loginButton = findViewById(R.id.loginButton)
 
         iAmNewHereButton.setOnClickListener {
-            Util.startActivityWithHorizontalSlideAnimation(this, RegistrationActivity::class.java)
+            startActivityWithHorizontalSlideAnimation(RegistrationActivity::class.java)
 //            startActivity(Intent(this, RegistrationActivity::class.java))
 //            overridePendingTransition(R.anim.slide_out_left, R.anim.slide_in_right)
         }
 
         loginButton.setOnClickListener {
-            Util.startActivityWithHorizontalSlideAnimation(this, LoginActivity::class.java)
+            startActivityWithHorizontalSlideAnimation(LoginActivity::class.java)
 //            startActivity(Intent(this, LoginActivity::class.java))
 //            overridePendingTransition(R.anim.slide_out_left, R.anim.slide_in_right)
         }

@@ -19,6 +19,9 @@
     <string name="chooseTravelPathSubtitle">Выберите начальную и конечную точку поездки</string>
     <string name="chooseTravelPathByMapSubtitle">Вы также можете выбрать нужную точку на карте</string>
     <string name="chooseOtherTravelParametersSubtitle">Укажите дополнительную ифнормацию</string>
+    <string name="passengersCountSubtitle">Количество пассажиров</string>
+    <string name="dateTimeDepartureSubtitle">Дата-время начала поездки</string>
+    <string name="desiredTripCostSubtitle">Желаемая стоимость поездки</string>
 
     <string name="insertLoginPasswordTitle">Введите пароль</string>
     <string name="protectAccountTitle">Защитите аккаунт</string>
@@ -50,6 +53,9 @@
     <string name="passwordConfirmationHint">Потверждение пароля</string>
     <string name="pointOfDepartureHint">Начальная точка</string>
     <string name="pointOfArrivalHint">Конечная точка</string>
+    <string name="departureDateHint">Дата отбытия</string>
+    <string name="departureTimeHint">Время отбытия</string>
+    <string name="tripCostHint">Стоимость поездки</string>
 
     <string name="networkIssue">Ошибка: Проблемы с подключением к сети</string>
     <string name="invalidConfirmationCodeIssue">Ошибка: Неверный код подтверждения</string>

@@ -2,6 +2,7 @@
 <resources>
     <dimen name="defaultMargin">10dp</dimen>
     <dimen name="filledButtonCornerRadius">35dp</dimen>
+    
     <integer name="confirmationCodeLength">6</integer>
 
     <dimen name="navBarHeight">55dp</dimen>
@@ -14,4 +15,6 @@
     <dimen name="fabSize">60dp</dimen>
     <dimen name="fabArrowForwardPadding">20dp</dimen>
     <dimen name="fabCheckPadding">15dp</dimen>
+
+    <string name="defaultPassengersCount">2</string>
 </resources>
