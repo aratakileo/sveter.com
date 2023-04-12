@@ -3,9 +3,15 @@
     <dimen name="defaultMargin">10dp</dimen>
     <dimen name="filledButtonCornerRadius">35dp</dimen>
     <integer name="confirmationCodeLength">6</integer>
+
     <dimen name="navBarHeight">55dp</dimen>
     <dimen name="navBarTranslationY">-55dp</dimen>
     <dimen name="navBarItemIconSize">35dp</dimen>
     <dimen name="navBarItemTitleSize">12sp</dimen>
     <dimen name="navBarItemSidesPadding">5dp</dimen>
+
+    <dimen name="fabMargin">20dp</dimen>
+    <dimen name="fabSize">60dp</dimen>
+    <dimen name="fabArrowForwardPadding">20dp</dimen>
+    <dimen name="fabCheckPadding">15dp</dimen>
 </resources>

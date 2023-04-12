@@ -66,16 +66,16 @@
 
         <ImageView
             android:id="@+id/applyVerificationCodeButton"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:padding="15dp"
+            android:layout_width="@dimen/fabSize"
+            android:layout_height="@dimen/fabSize"
+            android:padding="@dimen/fabArrowForwardPadding"
             android:scaleType="fitXY"
             android:background="@drawable/orange_filled_oval_ripple_animation_light_orange_rectangle"
             android:clickable="true"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginBottom="10dp"
-            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="@dimen/fabMargin"
+            android:layout_marginEnd="@dimen/fabMargin"
             android:src="@drawable/white_arrow_forward"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
