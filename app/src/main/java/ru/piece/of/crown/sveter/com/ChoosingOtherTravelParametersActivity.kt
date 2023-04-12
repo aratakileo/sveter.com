@@ -16,7 +16,6 @@ import finishActivityWithHorizontalSlideAnimation
 import formatNumber
 import getOnlyDigits
 import isDarkThemeNow
-import safeSubstring
 
 class ChoosingOtherTravelParametersActivity : AppCompatActivity() {
     private var pickedDate = -1L
