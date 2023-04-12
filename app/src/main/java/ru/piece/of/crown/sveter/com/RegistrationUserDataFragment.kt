@@ -8,7 +8,9 @@ import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.ImageView
 import androidx.core.widget.doOnTextChanged
-import getOnlyDigits
+import com.ozcanalasalvar.library.utils.DateUtils
+import com.ozcanalasalvar.library.view.datePicker.DatePicker
+import com.ozcanalasalvar.library.view.popup.DatePickerPopup
 
 /**
  * A simple [Fragment] subclass.
@@ -16,10 +18,14 @@ import getOnlyDigits
  * create an instance of this fragment.
  */
 class RegistrationUserDataFragment : Fragment() {
-    lateinit var firstNameField: EditText
-    lateinit var lastNameField: EditText
-    lateinit var dateOfBirthField: EditText
-    lateinit var apllyUserDataButton: ImageView
+    private var pickedDate = -1L
+
+    private lateinit var datePickerPopup: DatePickerPopup
+
+    private lateinit var firstNameField: EditText
+    private lateinit var lastNameField: EditText
+    private lateinit var dateOfBirthField: EditText
+    private lateinit var apllyUserDataButton: ImageView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,7 +45,20 @@ class RegistrationUserDataFragment : Fragment() {
             apllyUserDataButton = findViewById(R.id.applyUserDataButton)
         }
 
-        var ignoreAction = false
+        val currentDate = DateUtils.getCurrentTime()
+
+        datePickerPopup = DatePickerPopup.Builder()
+            .from(requireActivity())
+            .pickerMode(DatePicker.DAY_ON_FIRST)
+            .textSize(20)
+            .offset(3)
+            .currentDate(currentDate)
+            .listener { _, date, day, month, year ->
+                pickedDate = date
+                dateOfBirthField.setText(StringBuffer("$day/${month + 1}/$year"))
+                tryToShowOrHideFinishRegistrationButton()
+            }
+            .build()
 
         firstNameField.doOnTextChanged { text, start, before, count ->
             tryToShowOrHideFinishRegistrationButton()
@@ -47,20 +66,10 @@ class RegistrationUserDataFragment : Fragment() {
         lastNameField.doOnTextChanged { text, start, before, count ->
             tryToShowOrHideFinishRegistrationButton()
         }
-        dateOfBirthField.doOnTextChanged { text, start, before, count ->
-            tryToShowOrHideFinishRegistrationButton()
 
-            if (ignoreAction) return@doOnTextChanged
-            ignoreAction = true
-            val textString = text.toString()
-            val cursorPositionDecrease = textString.length - textString.replace(".", "").length
-            dateOfBirthField.setText(formatData(textString))
-            dateOfBirthField.setSelection(
-                transformCursorPosition(
-                    start,
-                    before != 0
-                ) - cursorPositionDecrease)
-            ignoreAction = false
+        dateOfBirthField.setOnTouchListener { _, _ ->
+            datePickerPopup.show()
+            return@setOnTouchListener true
         }
 
         apllyUserDataButton.apply {
@@ -91,28 +100,5 @@ class RegistrationUserDataFragment : Fragment() {
                 isEnabled = false
                 animate().alpha(0f).translationX(50f).duration = 1000
             }
-    }
-
-    companion object {
-        private fun formatData(sourceNumber: String): String {
-            var outputNumber = sourceNumber.getOnlyDigits(8)
-
-            if (outputNumber.length > 4)
-                outputNumber = java.lang.StringBuilder(outputNumber).apply { insert(4, '/') }.toString()
-
-            if (outputNumber.length > 2)
-                outputNumber = java.lang.StringBuilder(outputNumber).apply { insert(2, '/') }.toString()
-
-            return outputNumber
-        }
-
-        private fun transformCursorPosition(sourcePosition: Int, isDecrease: Boolean = false): Int {
-            var outputPosition = sourcePosition + if (isDecrease || sourcePosition == 10) 0 else 1
-
-            if (outputPosition == 6 || outputPosition == 3)
-                outputPosition += if (isDecrease) -1 else 1
-
-            return outputPosition
-        }
     }
 }
