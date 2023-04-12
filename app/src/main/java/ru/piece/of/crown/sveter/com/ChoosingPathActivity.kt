@@ -3,21 +3,14 @@ package ru.piece.of.crown.sveter.com
 import android.content.pm.PackageManager
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
-import android.util.Log
 import android.view.MenuItem
 import android.widget.EditText
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-import androidx.core.widget.doAfterTextChanged
 import com.yandex.mapkit.MapKitFactory
-import com.yandex.mapkit.geometry.BoundingBox
-import com.yandex.mapkit.geometry.Point
 import com.yandex.mapkit.mapview.MapView
-import com.yandex.mapkit.search.*
-import com.yandex.mapkit.search.SuggestSession.SuggestListener
-import com.yandex.runtime.Error
 
 
 class ChoosingPathActivity : AppCompatActivity() {
@@ -28,10 +21,6 @@ class ChoosingPathActivity : AppCompatActivity() {
     private lateinit var pointOfArrivalField: EditText
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        // -- SUGGEST - предложение адресов при вводе
-        // -- masstransit routing - пешеходный путь
-        // -- driving - путь машины
-
         if (!hasLocationPermissions())
             checkLocationPermissions()
 
