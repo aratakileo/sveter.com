@@ -14,7 +14,7 @@ object ProposalData {
         authorNumber: String,
         pointOfDeparture: String,
         pointOfArrival: String,
-        departureDate: String,
+        departureDate: Long,
         departureTime: String,
         userRole: String,
         passengerCount: Int,

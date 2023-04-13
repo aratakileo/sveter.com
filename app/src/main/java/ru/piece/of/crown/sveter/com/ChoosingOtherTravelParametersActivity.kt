@@ -76,7 +76,7 @@ class ChoosingOtherTravelParametersActivity : AppCompatActivity() {
                 UserData.getPhoneNumber(this)!!,
                 pointOfDeparture,
                 pointOfArrival,
-                departureDateField.text.toString(),
+                pickedDate,
                 departureTimeField.text.toString(),
                 userRole,
                 passengersCount,

@@ -35,6 +35,8 @@
     <string name="makeDecisionAboutRoleTitle">Кем будете?</string>
     <string name="chooseTravelPathTitle">Укажите путь</string>
     <string name="chooseOtherTravelParametersTitle">Уточните</string>
+    <string name="driverProposalsChapterTitle">Поездки</string>
+    <string name="passengerProposalsChapterTitle">Пассажиры</string>
 
     <string name="iAmNewHereAction">Я тут впервые</string>
     <string name="loginAction">Войти в аккаунт</string>
@@ -43,6 +45,7 @@
     <string name="iAmDriverAction">Я — водитель</string>
     <string name="closeAction">Закрыть</string>
     <string name="goBackAction">Вернуться</string>
+    <string name="moreAction">Ещё</string>
 
     <string name="phoneNumberHint">Номер телефона</string>
     <string name="confirmationCodeHint">Код подтверждения</string>

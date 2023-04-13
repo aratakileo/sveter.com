@@ -35,7 +35,7 @@ fun Context.finishActivityWithHorizontalSlideAnimation(isOutAnimation: Boolean =
     }
 }
 
-fun String.insert(index: Int, substring: String) = StringBuilder(this).apply { insert(index, substring) }.toString()
+fun String.insert(index: Int, substring: String) = StringBuilder(this).apply { insert(if (index >= 0) index else (this.length + index), substring) }.toString()
 
 fun String.safeSubstring(startIndex: Int, endIndex: Int): String {
     if (this.isEmpty()) return this

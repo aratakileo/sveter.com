@@ -10,16 +10,22 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-        <FrameLayout
-            android:id="@+id/container"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:layout="@layout/fragment_main_home"
-            />
+            android:orientation="horizontal"
+            android:layout_weight="1">
+            <FrameLayout
+                android:id="@+id/container"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:layout="@layout/fragment_main_home"
+                android:clickable="true"
+                />
+        </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="@dimen/navBarHeight"
-            android:translationY="@dimen/navBarTranslationY"
             android:elevation="15dp"
             android:background="@color/material_on_primary_disabled">
             <LinearLayout
