@@ -41,8 +41,8 @@ class ChoosingTravelPathActivity : AppCompatActivity() {
         applyPathPointsButton.setOnClickListener {
             startActivity(Intent(this, ChoosingOtherTravelParametersActivity::class.java).apply {
                 putExtra("role", userRole)
-                putExtra("pointOfDeparture", pointOfDepartureField.text.toString())
-                putExtra("pointOfArrival", pointOfArrivalField.text.toString())
+                putExtra("pointOfDeparture", pointOfDepartureField.text.toString().trim())
+                putExtra("pointOfArrival", pointOfArrivalField.text.toString().trim())
             })
             overridePendingTransition(R.anim.slide_out_left, R.anim.slide_in_right)
         }
