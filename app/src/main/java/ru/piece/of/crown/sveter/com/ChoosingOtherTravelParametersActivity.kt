@@ -1,5 +1,7 @@
 package ru.piece.of.crown.sveter.com
 
+import ProposalData
+import UserData
 import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -17,6 +19,7 @@ import formatNumber
 import getOnlyDigits
 import initFabAnimator
 import isDarkThemeNow
+import startActivityWithHorizontalSlideAnimation
 import startFabAnimation
 
 class ChoosingOtherTravelParametersActivity : AppCompatActivity() {
@@ -24,7 +27,11 @@ class ChoosingOtherTravelParametersActivity : AppCompatActivity() {
     private var pickedHour = -1
     private var pickedMinute = -1
     private var passengersCount = 0
-    private var travelCost = 0
+    private var tripCost = 0
+
+    private lateinit var userRole: String
+    private lateinit var pointOfDeparture: String
+    private lateinit var pointOfArrival: String
 
     private lateinit var datePickerPopup: DatePickerPopup
     private lateinit var timePickerPopup: TimePickerPopup
@@ -59,6 +66,25 @@ class ChoosingOtherTravelParametersActivity : AppCompatActivity() {
 
         tripCostField.setText(StringBuffer("0" + resources.getString(R.string.rubChar)))
         publishButton.initFabAnimator()
+
+        userRole = intent.getStringExtra("role")!!
+        pointOfDeparture = intent.getStringExtra("pointOfDeparture")!!
+        pointOfArrival = intent.getStringExtra("pointOfArrival")!!
+
+        publishButton.setOnClickListener {
+            ProposalData.sendProposal(
+                UserData.getPhoneNumber(this)!!,
+                pointOfDeparture,
+                pointOfArrival,
+                departureDateField.text.toString(),
+                departureTimeField.text.toString(),
+                userRole,
+                passengersCount,
+                tripCost
+            )
+            startActivityWithHorizontalSlideAnimation(MainActivity::class.java)
+            finishAffinity()
+        }
 
         datePickerPopup = DatePickerPopup.Builder()
             .from(this)
@@ -119,7 +145,7 @@ class ChoosingOtherTravelParametersActivity : AppCompatActivity() {
             )
             tripCostField.setText(StringBuffer((newString?:"0") + resources.getString(R.string.rubChar)))
             tripCostField.setSelection(newCursorPosition?:1)
-            travelCost = newText.getOnlyDigits().ifEmpty{"0"}.toInt()
+            tripCost = newText.getOnlyDigits().ifEmpty{"0"}.toInt()
             ignoreAction = false
 
             tryToShowOrHidePublishButton()
@@ -160,6 +186,6 @@ class ChoosingOtherTravelParametersActivity : AppCompatActivity() {
     }
 
     private fun tryToShowOrHidePublishButton() {
-        publishButton.startFabAnimation(departureDateField.length() > 0 && departureTimeField.length() > 0 && travelCost > 5)
+        publishButton.startFabAnimation(departureDateField.length() > 0 && departureTimeField.length() > 0 && tripCost > 5)
     }
 }
