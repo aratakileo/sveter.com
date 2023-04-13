@@ -39,14 +39,14 @@ class MainActivity : AppCompatActivity() {
             addItem(MainProfileFragment(), findViewById(R.id.fourthItemIcon), findViewById(R.id.fourthItemTitle))
             init()
 
-            setOnSelectListener { views, index ->
+            setOnSelectListener { views, _ ->
                 resources.getColor(R.color.fresh_orange, theme).apply {
                     (views[0] as ImageView).setColorFilter(this)
                     (views[1] as TextView).setTextColor(this)
                 }
             }
 
-            setOnUnselectListener { views, index ->
+            setOnUnselectListener { views, _ ->
                 resources.getColor(R.color.dirty_grey, theme).apply {
                     (views[0] as ImageView).setColorFilter(this)
                     (views[1] as TextView).setTextColor(this)

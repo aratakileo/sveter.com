@@ -46,6 +46,7 @@
     <string name="closeAction">Закрыть</string>
     <string name="goBackAction">Вернуться</string>
     <string name="moreAction">Ещё</string>
+    <string name="logoutAction">Выйти из аккаунта</string>
 
     <string name="phoneNumberHint">Номер телефона</string>
     <string name="confirmationCodeHint">Код подтверждения</string>

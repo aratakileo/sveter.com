@@ -22,6 +22,10 @@ object UserData {
         return if (querySnapshot.isSuccessful) querySnapshot.result else null
     }
 
+    fun logOut(context: Context) {
+        getLocalUserData(context).edit().putString("phoneNumber", null).apply()
+    }
+
     fun getUserDataByPhoneNumber(phoneNumber: String?): QueryDocumentSnapshot? {
         if (phoneNumber == null) return null
 
