@@ -2,6 +2,7 @@ package ru.piece.of.crown.sveter.com
 
 import ProposalData
 import UserData
+import android.content.Intent
 import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -82,7 +83,8 @@ class ChoosingOtherTravelParametersActivity : AppCompatActivity() {
                 passengersCount,
                 tripCost
             )
-            startActivityWithHorizontalSlideAnimation(MainActivity::class.java)
+            overridePendingTransition(R.anim.slide_in_bottom, R.anim.slide_out_bottom)
+            startActivity(Intent(this, MainActivity::class.java))
             finishAffinity()
         }
 
