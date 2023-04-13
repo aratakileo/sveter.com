@@ -2,6 +2,7 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.content.res.Configuration
+import android.widget.ImageView
 import ru.piece.of.crown.sveter.com.R
 
 val Context.themeType: Int
@@ -83,4 +84,19 @@ fun String.formatNumber(
     }
 
     return Pair(outputText, minOf(outputCursorPosition, outputText.length))
+}
+
+fun ImageView.initFabAnimator() {
+    alpha = 0f
+    translationX = 50f
+    isEnabled = false
+}
+
+fun ImageView.startFabAnimation(isShowingAnimation: Boolean) {
+    if (isShowingAnimation && !isEnabled)
+        animate().alpha(1f).translationX(0f).duration = 1000
+    else if (!isShowingAnimation && isEnabled)
+        animate().alpha(0f).translationX(50f).duration = 1000
+
+    isEnabled = isShowingAnimation
 }

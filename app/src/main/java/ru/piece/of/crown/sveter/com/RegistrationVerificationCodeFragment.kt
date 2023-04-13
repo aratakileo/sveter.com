@@ -9,6 +9,8 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.core.widget.doOnTextChanged
+import initFabAnimator
+import startFabAnimation
 
 /**
  * A simple [Fragment] subclass.
@@ -32,24 +34,10 @@ class RegistrationVerificationCodeFragment : Fragment() {
         confirmationCodeField = view.findViewById(R.id.confirmationCodeField)
         applyConfirmationCodeButton = view.findViewById(R.id.applyVerificationCodeButton)
 
-        applyConfirmationCodeButton.apply {
-            alpha = 0f
-            translationX = 50f
-            isEnabled = false
-        }
+        applyConfirmationCodeButton.initFabAnimator()
 
         confirmationCodeField.doOnTextChanged { text, start, before, count ->
-            if (text?.length == requireActivity().resources.getInteger(R.integer.confirmationCodeLength)) {
-                if (!applyConfirmationCodeButton.isEnabled)
-                    applyConfirmationCodeButton.apply {
-                        isEnabled = true
-                        animate().alpha(1f).translationX(0f).duration = 1000
-                    }
-            } else if (applyConfirmationCodeButton.isEnabled)
-                applyConfirmationCodeButton.apply {
-                    isEnabled = false
-                    animate().alpha(0f).translationX(50f).duration = 1000
-                }
+            applyConfirmationCodeButton.startFabAnimation(text?.length == requireActivity().resources.getInteger(R.integer.confirmationCodeLength))
         }
 
         applyConfirmationCodeButton.setOnClickListener {

@@ -15,7 +15,9 @@ import com.ozcanalasalvar.library.view.popup.TimePickerPopup
 import finishActivityWithHorizontalSlideAnimation
 import formatNumber
 import getOnlyDigits
+import initFabAnimator
 import isDarkThemeNow
+import startFabAnimation
 
 class ChoosingOtherTravelParametersActivity : AppCompatActivity() {
     private var pickedDate = -1L
@@ -35,6 +37,8 @@ class ChoosingOtherTravelParametersActivity : AppCompatActivity() {
     private lateinit var departureTimeField: EditText
     private lateinit var tripCostField: EditText
 
+    private lateinit var publishButton: ImageView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_choosing_other_travel_parameters)
@@ -51,7 +55,10 @@ class ChoosingOtherTravelParametersActivity : AppCompatActivity() {
         departureTimeField = findViewById(R.id.departureTimeField)
         tripCostField = findViewById(R.id.tripCostField)
 
+        publishButton = findViewById(R.id.publishButton)
+
         tripCostField.setText(StringBuffer("0" + resources.getString(R.string.rubChar)))
+        publishButton.initFabAnimator()
 
         datePickerPopup = DatePickerPopup.Builder()
             .from(this)
@@ -62,6 +69,7 @@ class ChoosingOtherTravelParametersActivity : AppCompatActivity() {
             .listener { _, date, day, month, year ->
                 pickedDate = date
                 departureDateField.setText(StringBuffer("$day/${month + 1}/$year"))
+                tryToShowOrHidePublishButton()
             }
             .build()
 
@@ -75,6 +83,7 @@ class ChoosingOtherTravelParametersActivity : AppCompatActivity() {
                 pickedMinute = minute
 
                 departureTimeField.setText(StringBuffer("$hour:$minute"))
+                tryToShowOrHidePublishButton()
             }
             .build()
 
@@ -112,6 +121,8 @@ class ChoosingOtherTravelParametersActivity : AppCompatActivity() {
             tripCostField.setSelection(newCursorPosition?:1)
             travelCost = newText.getOnlyDigits().ifEmpty{"0"}.toInt()
             ignoreAction = false
+
+            tryToShowOrHidePublishButton()
         }
 
         departureDateField.setOnTouchListener { _, _ ->
@@ -146,5 +157,9 @@ class ChoosingOtherTravelParametersActivity : AppCompatActivity() {
         }
 
         return false
+    }
+
+    private fun tryToShowOrHidePublishButton() {
+        publishButton.startFabAnimation(departureDateField.length() > 0 && departureTimeField.length() > 0 && travelCost > 5)
     }
 }

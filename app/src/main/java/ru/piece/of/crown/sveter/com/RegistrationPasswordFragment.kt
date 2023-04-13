@@ -12,6 +12,8 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.core.widget.doOnTextChanged
+import initFabAnimator
+import startFabAnimation
 
 class RegistrationPasswordFragment : Fragment() {
     lateinit var finishRegistrationButton: ImageView
@@ -43,6 +45,9 @@ class RegistrationPasswordFragment : Fragment() {
                 passwordConfirmationField.visibility = View.GONE
             }
         }
+
+        if (parentActivity.isRegistrationProcess)
+            finishRegistrationButton.initFabAnimator()
 
         finishRegistrationButton.setOnClickListener {
             if (passwordField.text.toString() == passwordConfirmationField.text.toString() || !parentActivity.isRegistrationProcess)
@@ -86,16 +91,8 @@ class RegistrationPasswordFragment : Fragment() {
     }
 
     private fun tryToShowOrHideFinishRegistrationButton() {
-        if (passwordField.length() >= 8 && (passwordConfirmationField.length() == passwordField.length() || !(activity as RegistrationActivity).isRegistrationProcess)) {
-            if (!finishRegistrationButton.isEnabled)
-                finishRegistrationButton.apply {
-                    isEnabled = true
-                    animate().alpha(1f).translationX(0f).duration = 1000
-                }
-        } else if (finishRegistrationButton.isEnabled)
-            finishRegistrationButton.apply {
-                isEnabled = false
-                animate().alpha(0f).translationX(50f).duration = 1000
-            }
+        finishRegistrationButton.startFabAnimation(
+            passwordField.length() >= 8 && (passwordConfirmationField.length() == passwordField.length() || !(activity as RegistrationActivity).isRegistrationProcess)
+        )
     }
 }

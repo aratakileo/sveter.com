@@ -67,7 +67,8 @@
                     android:gravity="center_horizontal"
                     android:background="@drawable/white_filled_background_field"
                     android:layout_weight="1"
-                    android:maxLength="30"/>
+                    android:maxLength="30"
+                    android:imeOptions="actionDone" />
 
                 <EditText
                     android:id="@+id/lastNameField"
@@ -86,7 +87,8 @@
                     android:gravity="center_horizontal"
                     android:background="@drawable/white_filled_background_field"
                     android:layout_weight="1"
-                    android:maxLength="30"/>
+                    android:maxLength="30"
+                    android:imeOptions="actionDone"/>
 
             </LinearLayout>
 

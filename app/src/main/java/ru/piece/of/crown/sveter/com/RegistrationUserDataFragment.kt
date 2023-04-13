@@ -11,6 +11,8 @@ import androidx.core.widget.doOnTextChanged
 import com.ozcanalasalvar.library.utils.DateUtils
 import com.ozcanalasalvar.library.view.datePicker.DatePicker
 import com.ozcanalasalvar.library.view.popup.DatePickerPopup
+import initFabAnimator
+import startFabAnimation
 
 /**
  * A simple [Fragment] subclass.
@@ -72,11 +74,7 @@ class RegistrationUserDataFragment : Fragment() {
             return@setOnTouchListener true
         }
 
-        apllyUserDataButton.apply {
-            isEnabled = false
-            alpha = 0f
-            translationX = 50f
-        }
+        apllyUserDataButton.initFabAnimator()
         
         apllyUserDataButton.setOnClickListener {
             (activity as RegistrationActivity).apply {
@@ -89,16 +87,8 @@ class RegistrationUserDataFragment : Fragment() {
     }
 
     private fun tryToShowOrHideFinishRegistrationButton() {
-        if (firstNameField.length() >= 2 && lastNameField.length() >= 2 && dateOfBirthField.length() >= 10) {
-            if (!apllyUserDataButton.isEnabled)
-                apllyUserDataButton.apply {
-                    isEnabled = true
-                    animate().alpha(1f).translationX(0f).duration = 1000
-                }
-        } else if (apllyUserDataButton.isEnabled)
-            apllyUserDataButton.apply {
-                isEnabled = false
-                animate().alpha(0f).translationX(50f).duration = 1000
-            }
+        apllyUserDataButton.startFabAnimation(
+            firstNameField.length() >= 2 && lastNameField.length() >= 2 && dateOfBirthField.length() >= 0
+        )
     }
 }
