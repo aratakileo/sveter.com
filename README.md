@@ -1,6 +1,6 @@
 # Sveter.com app for join trips
 
-Awesome designed app for join treaps. This app was developed by the Piece Of Crown [POC] team in just four days while participating in the Code Rocks hackathon.
+Awesome designed app for join trips. This app was developed by the Piece Of Crown [POC] team in just four days while participating in the Code Rocks hackathon.
 
 <p align="center">
 
