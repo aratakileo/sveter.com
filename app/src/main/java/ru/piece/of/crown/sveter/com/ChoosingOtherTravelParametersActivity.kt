@@ -83,8 +83,8 @@ class ChoosingOtherTravelParametersActivity : AppCompatActivity() {
                 passengersCount,
                 tripCost
             )
-            overridePendingTransition(R.anim.slide_in_bottom, R.anim.slide_out_bottom)
             startActivity(Intent(this, MainActivity::class.java))
+            overridePendingTransition(R.anim.slide_in_bottom, R.anim.slide_out_bottom)
             finishAffinity()
         }
 
