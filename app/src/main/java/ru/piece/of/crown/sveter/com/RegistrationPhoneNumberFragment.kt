@@ -62,7 +62,8 @@ class RegistrationPhoneNumberFragment : Fragment() {
                 else if (!isRegistrationProcess && !UserData.hasUserWithPhoneNumber(userPhoneNumber))
                     Toast.makeText(this, R.string.phoneNumberDoesNotExistIssue, Toast.LENGTH_LONG).show()
                 else {
-                    verificationCodeSender.sendVerificationCode(userPhoneNumber)
+                    verificationCodeSender.resetSession()
+                    verificationCodeSender.sendCode(userPhoneNumber, true)
                     showNextFragment(RegistrationVerificationCodeFragment())
                 }
             }

@@ -1,12 +1,12 @@
 package ru.piece.of.crown.sveter.com
 
-import VerificationCodeSender
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
+import com.teacondemns.smsru.codesender.api.CodeSender
 
 open class RegistrationActivity(val isRegistrationProcess: Boolean = true) : AppCompatActivity() {
-    lateinit var verificationCodeSender: VerificationCodeSender
+    lateinit var verificationCodeSender: CodeSender
     lateinit var userPhoneNumber: String
     lateinit var userFirstName: String
     lateinit var userLastName: String
@@ -19,11 +19,8 @@ open class RegistrationActivity(val isRegistrationProcess: Boolean = true) : App
         supportActionBar?.hide()
         window.statusBarColor = resources.getColor(R.color.light_orange, theme)
 
-        verificationCodeSender = VerificationCodeSender(
-            resources.getString(R.string.smsRuAPIToken),
-            resources.getString(R.string.confirmationCodeMessage),
-            resources.getInteger(R.integer.confirmationCodeLength)
-        )
+        verificationCodeSender = CodeSender(resources.getInteger(R.integer.confirmationCodeLength))
+        verificationCodeSender.setToken(this, R.string.smsRuAPIToken)
 
         if (savedInstanceState == null)
             supportFragmentManager.beginTransaction().add(R.id.container, RegistrationPhoneNumberFragment()).commit()

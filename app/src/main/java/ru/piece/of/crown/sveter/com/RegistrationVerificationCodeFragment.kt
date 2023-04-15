@@ -12,11 +12,6 @@ import androidx.core.widget.doOnTextChanged
 import initFabAnimator
 import startFabAnimation
 
-/**
- * A simple [Fragment] subclass.
- * Use the [RegistrationVerificationCodeFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class RegistrationVerificationCodeFragment : Fragment() {
     lateinit var confirmationCodeField: EditText
     lateinit var applyConfirmationCodeButton: ImageView
@@ -42,7 +37,7 @@ class RegistrationVerificationCodeFragment : Fragment() {
 
         applyConfirmationCodeButton.setOnClickListener {
             (activity as RegistrationActivity).apply {
-                if (verificationCodeSender.isValidCode(confirmationCodeField.text.toString())) {
+                if (verificationCodeSender.tryToConfirmSessionByCode(confirmationCodeField.text.toString())) {
                     if (isRegistrationProcess)
                         showNextFragment(RegistrationUserDataFragment())
                     else

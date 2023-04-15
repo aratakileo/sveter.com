@@ -37,7 +37,7 @@ android {
 }
 
 dependencies {
-    implementation 'androidx.core:core-ktx:1.9.0'
+    implementation 'androidx.core:core-ktx:1.10.0'
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'com.google.android.material:material:1.8.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
@@ -45,8 +45,8 @@ dependencies {
     implementation 'com.yandex.android:maps.mobile:4.3.1-full'
     implementation platform('com.google.firebase:firebase-bom:31.4.0')
     implementation 'com.google.firebase:firebase-firestore-ktx'
-    implementation 'com.squareup.okhttp3:okhttp:4.10.0'
     implementation 'com.github.OzcanAlasalvar:DatePicker:1.0.4'
+    implementation 'com.github.teacondemns:smsru-codesender-api:1.0.2'
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
