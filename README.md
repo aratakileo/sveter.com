@@ -2,7 +2,7 @@
 
 Awesome designed app for join trips. This app was developed by the Piece Of Crown [POC] team in just four days while participating in the Code Rocks hackathon.
 
-> **Warning**
+> [!WARNING]
 > I bring to your attention that for one reason or another, the functionality may be severely limited or the application may stop working after a certain period from the date of publication or in the case of using the functionality of the application for other purposes by one of its users
 
 <p align="center">
